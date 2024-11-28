@@ -1,39 +1,15 @@
-# V1 - Introduction
-- w - goes forwards by word
-- b - goes backwards by word.
-- x - deletes letter under cursor
+# Alpha Dashboard:
 
-## Command - count - motion (anatomy of a motion)
-*you can use an number before j and k to move that many lines down.*
+![images](./RM-images/alpha.png)
 
-- dd - delete line
-- CCM - d3j deletes 4 lines (current + 3)
-- CCM - d4w deletes 4 words
-- yy - yanks line into buffer.
-- CCM - y4j yanks 5 lines
+# Colorscheme:
 
-# V2 - Horizontal Movement 
-- 0 goes to beginning
-- $ goes to the end of a line
-- d$ - deletes from cursor to the end
+![images](./RM-images/colorscheme.png)
 
-- f - goes forwards to FIND the character that you searched for.
-- t - goes TO the character that your searched for.
-- *capital letters go backwards*
+# Telescope:
 
-- ; (semicolon) - goes forwards to next find
-- , (comma) - goes backwards to previous find.
+![images](./RM-images/telescope.png)
 
-- CCM - dt( - deletes up to the ( sign.
-- CCM - yt( - yanks up to the ( sign.
+# Yazi:
 
-
-
-
-
-
-
-
-
-
-
+![images](./RM-images/yazi.png)
