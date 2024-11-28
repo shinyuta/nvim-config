@@ -1,0 +1,6 @@
+*.log
+.DS_Store
+.session.vim
+lazy-lock.json
+lazyvim.json
+.luarc.json
