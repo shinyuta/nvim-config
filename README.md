@@ -13,3 +13,9 @@
 # Yazi:
 
 ![images](./RM-images/yazi.png)
+
+# Startup time
+
+About 180 ms, negligible in regular use.
+
+![images](./RM-images/startup.png)
