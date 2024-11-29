@@ -157,3 +157,7 @@ vim.keymap.set("n", "<leader>bn", "<cmd>BufferLineCycleNext<cr>")
 vim.keymap.set("n", "<leader>bm", "<cmd>BufferLineCyclePrev<cr>")
 vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<cr>")
 vim.keymap.set("n", "<leader>bx", "<cmd>BufferLineCloseOthers<cr>")
+
+-- Dooing
+vim.keymap.set("n", "<leader>td", "<cmd>Dooing<cr>")
+
