@@ -161,3 +161,15 @@ vim.keymap.set("n", "<leader>bx", "<cmd>BufferLineCloseOthers<cr>")
 -- Dooing
 vim.keymap.set("n", "<leader>td", "<cmd>Dooing<cr>")
 
+-- substitute
+vim.keymap.set("n", "s", require('substitute').operator, { noremap = true })
+vim.keymap.set("n", "ss", require('substitute').line, { noremap = true })
+vim.keymap.set("n", "S", require('substitute').eol, { noremap = true })
+vim.keymap.set("x", "s", require('substitute').visual, { noremap = true })
+
+-- For default preset
+vim.keymap.set('n', '<leader>m', require('treesj').toggle)
+-- For extending default preset with `recursive = true`
+vim.keymap.set('n', '<leader>M', function()
+  require('treesj').toggle({ split = { recursive = true } })
+end)

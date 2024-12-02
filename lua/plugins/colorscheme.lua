@@ -44,20 +44,21 @@ return {
 				git_text = "rose",
 				git_untracked = "subtle",
 
-				h1 = "iris",
-				h2 = "foam",
-				h3 = "rose",
-				h4 = "gold",
+				h1 = "foam",
+				h2 = "pine",
+				h3 = "gold",
+				h4 = "rose",
 				h5 = "pine",
 				h6 = "foam",
 			},
 
 			palette = {
-				-- Override the builtin palette per variant
-				-- moon = {
-				--     base = '#18191a',
-				--     overlay = '#363738',
-				-- },
+				main = {
+					gold = "#54C1DB",
+					rose = "#FDEEFC",
+					pine = "#A9DD48",
+					foam = "#FD77DD",
+				},
 			},
 
 			highlight_groups = {

@@ -1,0 +1,128 @@
+/* Color Theme Swatches in Hex */
+.arcane-jinx-1-hex {
+  color: #732959;
+}
+
+.arcane-jinx-2-hex {
+  color: #401c33;
+}
+
+.arcane-jinx-3-hex {
+  color: #a63f8a;
+}
+
+.arcane-jinx-4-hex {
+  color: #00010d;
+}
+
+.arcane-jinx-5-hex {
+  color: #30588c;
+}
+
+/* Color Theme Swatches in RGBA */
+.arcane-jinx-1-rgba {
+  color: rgba(114, 41, 89, 1);
+}
+
+.arcane-jinx-2-rgba {
+  color: rgba(63, 28, 51, 1);
+}
+
+.arcane-jinx-3-rgba {
+  color: rgba(165, 62, 138, 1);
+}
+
+.arcane-jinx-4-rgba {
+  color: rgba(0, 0, 12, 1);
+}
+
+.arcane-jinx-5-rgba {
+  color: rgba(47, 87, 140, 1);
+}
+
+/* Color Theme Swatches in HSLA */
+.arcane-jinx-1-hsla {
+  color: hsla(321, 47, 30, 1);
+}
+
+.arcane-jinx-2-hsla {
+  color: hsla(321, 38, 17, 1);
+}
+
+.arcane-jinx-3-hsla {
+  color: hsla(316, 44, 44, 1);
+}
+
+.arcane-jinx-4-hsla {
+  color: hsla(236, 96, 2, 1);
+}
+
+.arcane-jinx-5-hsla {
+  color: hsla(214, 49, 36, 1);
+}
+
+.palette {
+  /* base */
+  color: #191724;
+  /* surface */ 
+  color: #1f1d2e;
+  /* overlay */
+  color: #26233a;
+  /* muted */ 
+  color: #6e6a86;
+  /* subtle */
+  color: #908caa;
+  /* text */
+  color: #e0def4;
+  /* love */ 
+  color: #eb6f92;
+  /* gold */
+  color: #f6c177;
+  /* rose */ 
+  color: #ebbcba;
+  /* pine */ 
+  color: #31748f;
+  /* foam */
+  color: #9ccfd8;
+  /* iris */
+  color: #c4a7e7;
+  /* highlight-low */ 
+  color: #21202e;
+  /* highlight med */ 
+  color: #403d52;
+  /* highlight high */ 
+  color: #524f67;
+}
+
+.jinx {
+  /* base */
+  color: #191724;
+  /* surface */ 
+  color: #1f1d2e;
+  /* overlay */
+  color: #26233a;
+  /* muted */ 
+  color: #6e6a86;
+  /* subtle */
+  color: #908caa;
+  /* text */
+  color: #e0def4;
+  /* love */ 
+  color: #eb6f92;
+  /* gold */
+  color: #54C1DB; /* color of hair */
+  /* rose */ 
+  color: #FDEEFC; /* the brightest part of the eye */
+  /* pine */ 
+  color: #A9DD48; /* green from Zaun */
+  /* foam */
+  color: #FD77DD; /* bright part of the eye */
+  /* iris */
+  color: #c4a7e7;
+  /* highlight-low */ 
+  color: #21202e;
+  /* highlight med */ 
+  color: #403d52;
+  /* highlight high */ 
+  color: #524f67;
+}
