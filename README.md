@@ -1,3 +1,7 @@
+# JINX, NEW COLORSCHEME:
+
+![images](./RM-images/jinx.png)
+
 # Alpha Dashboard:
 
 ![images](./RM-images/alpha.png)
