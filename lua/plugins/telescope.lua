@@ -6,30 +6,31 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       local builtin = require("telescope.builtin")
-
+      
+      -- previous color #A9DD48
       local TelescopePrompt = {
         TelescopePromptTitle = {
-          fg = "#A688CA",
+          fg = "#A9DD48",
           bg = "none",
         },
         TelescopePreviewTitle = {
-          fg = "#A688CA",
+          fg = "#A9DD48",
           bg = "none",
         },
         TelescopeResultsTitle = {
-          fg = "#A688CA",
+          fg = "#A9DD48",
           bg = "none",
         },
         TelescopePromptBorder = {
-          fg = "#A688CA",
+          fg = "#A9DD48",
           bg = "none",
         },
         TelescopePreviewBorder = {
-          fg = "#A688CA",
+          fg = "#A9DD48",
           bg = "none",
         },
         TelescopeResultsBorder = {
-          fg = "#A688CA",
+          fg = "#A9DD48",
           bg = "none",
         },
       }

@@ -28,8 +28,6 @@ vim.keymap.set({ "n", "v" }, "<leader>D", '"+D') -- delete line
 vim.keymap.set("n", "<leader>p", '"+p') -- paste after cursor
 vim.keymap.set("n", "<leader>P", '"+P') -- paste before cursor
 
-vim.keymap.set("n", "<C-n>", ":Neotree filesystem toggle left<CR>", {})
-
 -- windows/linux
 vim.keymap.set("n", "<Esc-j>", ":m .+1<CR>==")     -- move line up(n)
 vim.keymap.set("n", "<Esc-k>", ":m .-2<CR>==")     -- move line down(n)
