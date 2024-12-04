@@ -45,11 +45,11 @@ return {
 				git_untracked = "subtle",
 
 				h1 = "foam",
-				h2 = "pine",
-				h3 = "gold",
+				h2 = "gold",
+				h3 = "pine",
 				h4 = "rose",
-				h5 = "pine",
-				h6 = "foam",
+				h5 = "foam",
+				h6 = "gold",
 			},
 
 			palette = {

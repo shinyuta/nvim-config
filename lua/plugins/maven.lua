@@ -7,12 +7,6 @@ return {
    },
    opts = {}, -- options, see default configuration
    keys = {
-      {
-        "<Leader>M",
-        function()
-          require("maven").toggle_projects_view()
-        end,
-        desc = "Maven",
-      },
+      { "<leader>ma", function() require("maven").toggle_projects_view() end, desc = "Maven" },
    }
 }
