@@ -1,3 +1,4 @@
+-- install with yarn or npm
 return {
   "iamcco/markdown-preview.nvim",
   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -7,3 +8,4 @@ return {
   end,
   ft = { "markdown" },
 }
+
