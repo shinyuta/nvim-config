@@ -32,10 +32,12 @@ return {
 			},
 		})
 		require("notify").setup({
-      timeout = 5000,
+			timeout = 2000,
 			background_colour = "#000000",
-      render = "wrapped-compact"
+			max_width = 30,
+			max_height = 5,
+			render = "wrapped-compact",
 		})
-    require("telescope").load_extension("noice")
+		require("telescope").load_extension("noice")
 	end,
 }
