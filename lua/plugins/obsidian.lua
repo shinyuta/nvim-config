@@ -21,11 +21,11 @@ return {
 		workspaces = {
 			{
 				name = "personal",
-				path = "~/notes/personal",
+				path = "~/Desktop/notes/personal",
 			},
 			{
 				name = "work",
-				path = "~/notes/work/Y2S2",
+				path = "~/Desktop/notes/work/School/Y3S1",
 			},
 		},
 		-- other fields ...

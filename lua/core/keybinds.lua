@@ -142,6 +142,11 @@ vim.keymap.set("n", "<leader>bx", "<cmd>BufferLineCloseOthers<cr>")
 -- Dooing
 vim.keymap.set("n", "<leader>td", "<cmd>Dooing<cr>")
 
+-- Timer/Pomo
+vim.keymap.set("n", "<leader>ts", "<cmd>TimerStart 50m Work<cr>")
+vim.keymap.set("n", "<leader>tb", "<cmd>TimerStart 10m Break<cr>")
+vim.keymap.set("n", "<leader>tx", "<cmd>TimerStop<cr>")
+
 -- substitute
 vim.keymap.set("n", "s", require("substitute").operator, { noremap = true })
 vim.keymap.set("n", "ss", require("substitute").line, { noremap = true })
@@ -152,7 +157,7 @@ vim.keymap.set("x", "s", require("substitute").visual, { noremap = true })
 vim.keymap.set("n", "<leader>m", require("treesj").toggle)
 -- For extending default preset with `recursive = true`
 vim.keymap.set("n", "<leader>M", function()
-	require("treesj").toggle({ split = { recursive = true } })
+require("treesj").toggle({ split = { recursive = true } })
 end)
 
 -- neoscroll
