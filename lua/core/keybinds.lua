@@ -1,19 +1,19 @@
 -- tmux navigator found in file, h-j-k-l, tmux prefix leader+ctrl
 -- General keymaps
-vim.keymap.set("n", "<leader>wq", ":wq<CR>") -- save and quit
-vim.keymap.set("n", "<leader>wqq", ":wqa<CR>") -- save and quit
-vim.keymap.set("n", "<leader>qq", ":q!<CR>") -- quit without saving
-vim.keymap.set("n", "<leader>ww", ":w<CR>") -- save
+vim.keymap.set("n", "<leader>wq", ":wq<CR>")       -- save and quit
+vim.keymap.set("n", "<leader>wqq", ":wqa<CR>")     -- save and quit
+vim.keymap.set("n", "<leader>qq", ":q!<CR>")       -- quit without saving
+vim.keymap.set("n", "<leader>ww", ":w<CR>")        -- save
 vim.keymap.set("n", "gx", ":!open <c-r><c-a><CR>") -- open URL under cursor
 
 -- Split window management
-vim.keymap.set("n", "<leader>sv", "<C-w>v") -- split window vertically
-vim.keymap.set("n", "<leader>sh", "<C-w>s") -- split window horizontally
-vim.keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width
+vim.keymap.set("n", "<leader>sv", "<C-w>v")     -- split window vertically
+vim.keymap.set("n", "<leader>sh", "<C-w>s")     -- split window horizontally
+vim.keymap.set("n", "<leader>se", "<C-w>=")     -- make split windows equal width
 vim.keymap.set("n", "<leader>sx", ":close<CR>") -- close split window
-vim.keymap.set("n", "<leader>sk", "<C-w>+") -- make split windows height taller
-vim.keymap.set("n", "<leader>sl", "<C-w>>5") -- make split windows width bigger
-vim.keymap.set("n", "<leader>sh", "<C-w><5") -- make split windows width smaller
+vim.keymap.set("n", "<leader>sk", "<C-w>+")     -- make split windows height taller
+vim.keymap.set("n", "<leader>sl", "<C-w>>5")    -- make split windows width bigger
+vim.keymap.set("n", "<leader>sh", "<C-w><5")    -- make split windows width smaller
 
 -- Yank into system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y') -- yank motion
@@ -28,8 +28,8 @@ vim.keymap.set("n", "<leader>p", '"+p') -- paste after cursor
 vim.keymap.set("n", "<leader>P", '"+P') -- paste before cursor
 
 -- windows/linux
-vim.keymap.set("n", "<Esc-j>", ":m .+1<CR>==") -- move line up(n)
-vim.keymap.set("n", "<Esc-k>", ":m .-2<CR>==") -- move line down(n)
+vim.keymap.set("n", "<Esc-j>", ":m .+1<CR>==")     -- move line up(n)
+vim.keymap.set("n", "<Esc-k>", ":m .-2<CR>==")     -- move line down(n)
 vim.keymap.set("v", "<Esc-j>", ":m '>+1<CR>gv=gv") -- move line up(v)
 vim.keymap.set("v", "<Esc-k>", ":m '<-2<CR>gv=gv") -- move line down(v)
 
@@ -60,28 +60,28 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 local harpoon = require("harpoon")
 harpoon:setup()
 vim.keymap.set("n", "<leader>ha", function()
-	harpoon:list():add()
+  harpoon:list():add()
 end)
 vim.keymap.set("n", "<leader>hh", function()
-	harpoon.ui:toggle_quick_menu(harpoon:list())
+  harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
 vim.keymap.set("n", "<leader>h1", function()
-	harpoon:list():select(1)
+  harpoon:list():select(1)
 end)
 vim.keymap.set("n", "<leader>h2", function()
-	harpoon:list():select(2)
+  harpoon:list():select(2)
 end)
 vim.keymap.set("n", "<leader>h3", function()
-	harpoon:list():select(3)
+  harpoon:list():select(3)
 end)
 vim.keymap.set("n", "<leader>h4", function()
-	harpoon:list():select(4)
+  harpoon:list():select(4)
 end)
 vim.keymap.set("n", "<C-S-P>", function()
-	harpoon:list():prev()
+  harpoon:list():prev()
 end)
 vim.keymap.set("n", "<C-S-N>", function()
-	harpoon:list():next()
+  harpoon:list():next()
 end)
 
 -- lsp-config (code actions, definitions, etc)
@@ -94,9 +94,9 @@ vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 vim.keymap.set("n", "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>")
 vim.keymap.set("n", "<leader>bc", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
 vim.keymap.set(
-	"n",
-	"<leader>bl",
-	"<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>"
+  "n",
+  "<leader>bl",
+  "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>"
 )
 vim.keymap.set("n", "<leader>br", "<cmd>lua require'dap'.clear_breakpoints()<cr>")
 vim.keymap.set("n", "<leader>ba", "<cmd>Telescope dap list_breakpoints<cr>")
@@ -105,26 +105,26 @@ vim.keymap.set("n", "<leader>dj", "<cmd>lua require'dap'.step_over()<cr>")
 vim.keymap.set("n", "<leader>dk", "<cmd>lua require'dap'.step_into()<cr>")
 vim.keymap.set("n", "<leader>do", "<cmd>lua require'dap'.step_out()<cr>")
 vim.keymap.set("n", "<leader>dd", function()
-	require("dap").disconnect()
-	require("dapui").close()
+  require("dap").disconnect()
+  require("dapui").close()
 end)
 vim.keymap.set("n", "<leader>dt", function()
-	require("dap").terminate()
-	require("dapui").close()
+  require("dap").terminate()
+  require("dapui").close()
 end)
 vim.keymap.set("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>")
 vim.keymap.set("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>")
 vim.keymap.set("n", "<leader>di", function()
-	require("dap.ui.widgets").hover()
+  require("dap.ui.widgets").hover()
 end)
 vim.keymap.set("n", "<leader>d?", function()
-	local widgets = require("dap.ui.widgets")
-	widgets.centered_float(widgets.scopes)
+  local widgets = require("dap.ui.widgets")
+  widgets.centered_float(widgets.scopes)
 end)
 vim.keymap.set("n", "<leader>df", "<cmd>Telescope dap frames<cr>")
 vim.keymap.set("n", "<leader>dh", "<cmd>Telescope dap commands<cr>")
 vim.keymap.set("n", "<leader>de", function()
-	require("telescope.builtin").diagnostics({ default_text = ":E:" })
+  require("telescope.builtin").diagnostics({ default_text = ":E:" })
 end)
 
 -- error
@@ -135,21 +135,28 @@ vim.keymap.set("n", "<leader>q", ":Bdelete<CR>")
 
 --unit testing
 vim.keymap.set("n", "<leader>tc", function()
-	if vim.bo.filetype == "java" then
-		require("jdtls").test_class()
-	end
+  if vim.bo.filetype == "java" then
+    require("jdtls").test_class()
+  end
 end)
 vim.keymap.set("n", "<leader>tm", function()
-	if vim.bo.filetype == "java" then
-		require("jdtls").test_nearest_method()
-	end
+  if vim.bo.filetype == "java" then
+    require("jdtls").test_nearest_method()
+  end
 end)
 
 -- bufferline
-vim.keymap.set("n", "<leader>bn", "<cmd>BufferLineCycleNext<cr>")
-vim.keymap.set("n", "<leader>bm", "<cmd>BufferLineCyclePrev<cr>")
-vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<cr>")
-vim.keymap.set("n", "<leader>bx", "<cmd>BufferLineCloseOthers<cr>")
+vim.keymap.set("n", "<leader>bn", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>bm", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<cr>", { desc = "Pin buffer" })
+
+vim.keymap.set("n", "<leader>bx", function()
+  Snacks.bufdelete.other(opts)
+end, { desc = "Delete other buffers" })
+
+vim.keymap.set("n", "<leader>bd", function()
+  Snacks.bufdelete()
+end, { desc = "Delete buffer" })
 
 -- Dooing
 vim.keymap.set("n", "<leader>td", "<cmd>Dooing<cr>")
@@ -164,49 +171,54 @@ vim.keymap.set("x", "s", require("substitute").visual, { noremap = true })
 vim.keymap.set("n", "<leader>m", require("treesj").toggle)
 -- For extending default preset with `recursive = true`
 vim.keymap.set("n", "<leader>M", function()
-	require("treesj").toggle({ split = { recursive = true } })
+  require("treesj").toggle({ split = { recursive = true } })
 end)
 
 -- neoscroll
 local scroll = require("neoscroll").scroll
 vim.keymap.set("n", "<C-u>", function()
-	scroll(-10, { move_cursor = true, duration = 200 })
+  scroll(-10, { move_cursor = true, duration = 200 })
 end)
 vim.keymap.set("n", "<C-d>", function()
-	scroll(10, { move_cursor = true, duration = 200 })
+  scroll(10, { move_cursor = true, duration = 200 })
 end)
 
 -- SNACKS
 vim.keymap.set("n", "<leader>dn", function()
-	Snacks.notifier.hide()
+  Snacks.notifier.hide()
 end, { desc = "Dismiss All Notifications" })
 
 -- SNACKS LAZYGIT
 vim.keymap.set("n", "<leader>lg", function()
-	Snacks.lazygit()
+  Snacks.lazygit()
 end, { desc = "Lazygit" })
 
 vim.keymap.set("n", "<leader>gb", function()
-	Snacks.git.blame_line()
+  Snacks.git.blame_line()
 end, { desc = "Git Blame Line" })
 
 vim.keymap.set("n", "<leader>gB", function()
-	Snacks.gitbrowse()
+  Snacks.gitbrowse()
 end, { desc = "Git Browse" })
 
 vim.keymap.set("n", "<leader>lGH", function()
-	Snacks.lazygit.log_file()
+  Snacks.lazygit.log_file()
 end, { desc = "Lazygit Current File History" })
 
 vim.keymap.set("n", "<leader>lGL", function()
-	Snacks.lazygit.log()
+  Snacks.lazygit.log()
 end, { desc = "Lazygit Log (cwd)" })
 
 -- SNACKS CONT.
 vim.keymap.set("n", "<leader>rF", function()
-	Snacks.rename.rename_file()
+  Snacks.rename.rename_file()
 end, { desc = "Rename File" })
 
 vim.keymap.set("n", "<leader>tt", function()
-	Snacks.terminal()
+  Snacks.terminal()
 end, { desc = "Toggle Terminal" })
+
+-- Snacks Zen
+vim.keymap.set("n", "<leader>zz", function()
+  Snacks.zen()
+end, { desc = "Toggle Zen" })
