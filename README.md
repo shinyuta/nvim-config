@@ -1,3 +1,3 @@
 # Jinx Colorscheme + Snacks Dashboard
 
-![images](./RM-images/jinxSnacksDashboard.png)
+![images](./RM-images/dashboard.png)
