@@ -1,62 +1,64 @@
--- tmux navigator found in file, h-j-k-l, tmux prefix leader+ctrl
--- General keymaps
-vim.keymap.set("n", "<leader>wq", ":wq<CR>") -- save and quit
-vim.keymap.set("n", "<leader>wqq", ":wqa<CR>") -- save and quit
-vim.keymap.set("n", "<leader>qq", ":q!<CR>") -- quit without saving
-vim.keymap.set("n", "<leader>ww", ":w<CR>") -- save
-vim.keymap.set("n", "gx", ":!open <c-r><c-a><CR>") -- open URL under cursor
+------------------ GENERAL ------------------
 
--- Split window management
-vim.keymap.set("n", "<leader>sv", "<C-w>v") -- split window vertically
-vim.keymap.set("n", "<leader>sh", "<C-w>s") -- split window horizontally
-vim.keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width
-vim.keymap.set("n", "<leader>sx", ":close<CR>") -- close split window
-vim.keymap.set("n", "<leader>sk", "<C-w>+") -- make split windows height taller
-vim.keymap.set("n", "<leader>sl", "<C-w>>5") -- make split windows width bigger
-vim.keymap.set("n", "<leader>sh", "<C-w><5") -- make split windows width smaller
+vim.keymap.set("n", "<leader>wq", ":wq<CR>")
+vim.keymap.set("n", "<leader>wqq", ":wqa<CR>")
+vim.keymap.set("n", "<leader>qq", ":q!<CR>")
+vim.keymap.set("n", "<leader>ww", ":w<CR>")
+vim.keymap.set("n", "gx", ":!open <c-r><c-a><CR>")
 
--- Yank into system clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", '"+y') -- yank motion
-vim.keymap.set({ "n", "v" }, "<leader>Y", '"+Y') -- yank line
+------------------ WINDOW MANAGEMENT ------------------
 
--- Delete into system clipboard
-vim.keymap.set({ "n", "v" }, "<leader>d", '"+d') -- delete motion
-vim.keymap.set({ "n", "v" }, "<leader>D", '"+D') -- delete line
+vim.keymap.set("n", "<leader>sv", "<C-w>v")
+vim.keymap.set("n", "<leader>sh", "<C-w>s")
+vim.keymap.set("n", "<leader>se", "<C-w>=")
+vim.keymap.set("n", "<leader>sx", ":close<CR>")
+vim.keymap.set("n", "<leader>sk", "<C-w>+")
+vim.keymap.set("n", "<leader>sl", "<C-w>>5")
+vim.keymap.set("n", "<leader>sh", "<C-w><5")
 
--- Paste from system clipboard
-vim.keymap.set("n", "<leader>p", '"+p') -- paste after cursor
-vim.keymap.set("n", "<leader>P", '"+P') -- paste before cursor
+------------------ CLIPBOARD ------------------
 
--- windows/linux
-vim.keymap.set("n", "<Esc-j>", ":m .+1<CR>==") -- move line up(n)
-vim.keymap.set("n", "<Esc-k>", ":m .-2<CR>==") -- move line down(n)
-vim.keymap.set("v", "<Esc-j>", ":m '>+1<CR>gv=gv") -- move line up(v)
-vim.keymap.set("v", "<Esc-k>", ":m '<-2<CR>gv=gv") -- move line down(v)
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
+vim.keymap.set({ "n", "v" }, "<leader>Y", '"+Y')
+vim.keymap.set({ "n", "v" }, "<leader>d", '"+d')
+vim.keymap.set({ "n", "v" }, "<leader>D", '"+D')
+vim.keymap.set("n", "<leader>p", '"+p')
+vim.keymap.set("n", "<leader>P", '"+P')
 
--- neovim pane movement
+------------------ LINE MOVEMENT ------------------
+
+vim.keymap.set("n", "<Esc-j>", ":m .+1<CR>==")
+vim.keymap.set("n", "<Esc-k>", ":m .-2<CR>==")
+vim.keymap.set("v", "<Esc-j>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<Esc-k>", ":m '<-2<CR>gv=gv")
+
+------------------ PANE NAVIGATION ------------------
+
 vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
 vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
 vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
 vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
 
--- none-ls
-vim.keymap.set("n", "<leader>gf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>")
-vim.keymap.set("v", "<leader>gf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>")
+------------------ LSP ------------------
 
-vim.keymap.set("n", "<leader>gg", "<cmd>lua vim.lsp.buf.hover()<CR>")
+vim.keymap.set("n", "<leader>ci", vim.lsp.buf.hover, { desc = "Code info" })
+vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, { desc = "Code definition" })
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, { desc = "Code references" })
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+vim.keymap.set("n", "<leader>gf", function()
+	vim.lsp.buf.format({ async = true })
+end, { desc = "Format code" })
+vim.keymap.set("n", "<leader>cn", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+vim.keymap.set("n", "<leader>cp", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
 
-vim.keymap.set("n", "<leader>gp", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
-vim.keymap.set("n", "<leader>gn", "<cmd>lua vim.diagnostic.goto_next()<CR>")
+------------------ TELESCOPE ------------------
 
-vim.keymap.set("n", "<leader>ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-vim.keymap.set("n", "<leader>rr", "<cmd>lua vim.lsp.buf.rename()<CR>")
-
--- telescope
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<C-p>", builtin.find_files, {})
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 
---harpoon
+------------------ HARPOON ------------------
+
 local harpoon = require("harpoon")
 harpoon:setup()
 vim.keymap.set("n", "<leader>ha", function()
@@ -78,13 +80,8 @@ vim.keymap.set("n", "<leader>h4", function()
 	harpoon:list():select(4)
 end)
 
--- lsp-config (code actions, definitions, etc)
-vim.keymap.set("n", "<leader>ci", vim.lsp.buf.hover, { desc = "Code info" })
-vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, { desc = "Code def" })
-vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, { desc = "Code refer" })
-vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+------------------ DEBUGGING ------------------
 
--- Debugging
 vim.keymap.set("n", "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>")
 vim.keymap.set("n", "<leader>bc", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
 vim.keymap.set(
@@ -112,8 +109,7 @@ vim.keymap.set("n", "<leader>di", function()
 	require("dap.ui.widgets").hover()
 end)
 vim.keymap.set("n", "<leader>d?", function()
-	local widgets = require("dap.ui.widgets")
-	widgets.centered_float(widgets.scopes)
+	require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes)
 end)
 vim.keymap.set("n", "<leader>df", "<cmd>Telescope dap frames<cr>")
 vim.keymap.set("n", "<leader>dh", "<cmd>Telescope dap commands<cr>")
@@ -121,13 +117,21 @@ vim.keymap.set("n", "<leader>de", function()
 	require("telescope.builtin").diagnostics({ default_text = ":E:" })
 end)
 
--- error
-vim.keymap.set("n", "<C-e>", ":Telescope noice<CR>")
+------------------ BUFFERLINE ------------------
 
--- bufferline close
 vim.keymap.set("n", "<leader>q", ":Bdelete<CR>")
+vim.keymap.set("n", "<leader>bn", "<cmd>BufferLineCycleNext<cr>")
+vim.keymap.set("n", "<leader>bm", "<cmd>BufferLineCyclePrev<cr>")
+vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<cr>")
+vim.keymap.set("n", "<leader>bx", function()
+	Snacks.bufdelete.other(opts)
+end)
+vim.keymap.set("n", "<leader>bd", function()
+	Snacks.bufdelete()
+end)
 
---unit testing
+------------------ TESTING ------------------
+
 vim.keymap.set("n", "<leader>tc", function()
 	if vim.bo.filetype == "java" then
 		require("jdtls").test_class()
@@ -139,50 +143,42 @@ vim.keymap.set("n", "<leader>tm", function()
 	end
 end)
 
--- bufferline
-vim.keymap.set("n", "<leader>bn", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bm", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<cr>", { desc = "Pin buffer" })
+------------------ SUBSTITUTE ------------------
 
-vim.keymap.set("n", "<leader>bx", function()
-	Snacks.bufdelete.other(opts)
-end, { desc = "Delete other buffers" })
+vim.keymap.set("n", "s", require("substitute").operator)
+vim.keymap.set("n", "ss", require("substitute").line)
+vim.keymap.set("n", "S", require("substitute").eol)
+vim.keymap.set("x", "s", require("substitute").visual)
 
-vim.keymap.set("n", "<leader>bd", function()
-	Snacks.bufdelete()
-end, { desc = "Delete buffer" })
+------------------ MISC ------------------
 
--- Dooing
+vim.keymap.set("n", "<C-e>", ":Telescope noice<CR>")
 vim.keymap.set("n", "<leader>td", "<cmd>Dooing<cr>")
-
--- substitute
-vim.keymap.set("n", "s", require("substitute").operator, { noremap = true })
-vim.keymap.set("n", "ss", require("substitute").line, { noremap = true })
-vim.keymap.set("n", "S", require("substitute").eol, { noremap = true })
-vim.keymap.set("x", "s", require("substitute").visual, { noremap = true })
-
--- For default preset
 vim.keymap.set("n", "<leader>m", require("treesj").toggle)
--- For extending default preset with `recursive = true`
 vim.keymap.set("n", "<leader>M", function()
 	require("treesj").toggle({ split = { recursive = true } })
 end)
 
--- neoscroll
-local scroll = require("neoscroll").scroll
-vim.keymap.set("n", "<C-u>", function()
-	scroll(-10, { move_cursor = true, duration = 200 })
-end)
-vim.keymap.set("n", "<C-d>", function()
-	scroll(10, { move_cursor = true, duration = 200 })
-end)
+------------------ SNACKS ------------------
 
--- SNACKS
 vim.keymap.set("n", "<leader>dn", function()
 	Snacks.notifier.hide()
-end, { desc = "Dismiss All Notifications" })
+end)
 
--- SNACKS LAZYGIT
+vim.keymap.set("n", "<leader>rF", function()
+	Snacks.rename.rename_file()
+end)
+
+vim.keymap.set("n", "<leader>tt", function()
+	Snacks.terminal()
+end)
+
+vim.keymap.set("n", "<leader>zz", function()
+	Snacks.zen()
+end)
+
+------------------ SNACKS LAZYGIT  ------------------
+
 vim.keymap.set("n", "<leader>lg", function()
 	Snacks.lazygit()
 end, { desc = "Lazygit" })
@@ -202,17 +198,3 @@ end, { desc = "Lazygit Current File History" })
 vim.keymap.set("n", "<leader>lGL", function()
 	Snacks.lazygit.log()
 end, { desc = "Lazygit Log (cwd)" })
-
--- SNACKS CONT.
-vim.keymap.set("n", "<leader>rF", function()
-	Snacks.rename.rename_file()
-end, { desc = "Rename File" })
-
-vim.keymap.set("n", "<leader>tt", function()
-	Snacks.terminal()
-end, { desc = "Toggle Terminal" })
-
--- Snacks Zen
-vim.keymap.set("n", "<leader>zz", function()
-	Snacks.zen()
-end, { desc = "Toggle Zen" })
