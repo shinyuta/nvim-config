@@ -40,7 +40,6 @@ return {
 
 				{ section = "startup", gap = 0, padding = 2, pane = 1 }, -- Ensures same gap as Git Status
 
-				-- Keys Section with Controlled Gap
 				{ section = "keys", gap = 1, padding = 2 },
 
 				{
@@ -95,11 +94,15 @@ return {
 			height = { min = 1, max = 0.6 },
 			style = "compact",
 		},
+
 		explorer = { enabled = false },
 		indent = { enabled = false },
 		input = { enabled = false },
 		picker = { enabled = false },
-		quickfile = { enabled = false },
+
+    -- QUICKFILE
+		quickfile = { enabled = true },
+
 		scope = { enabled = false },
 		scroll = { enabled = false },
 		statuscolumn = { enabled = false },
