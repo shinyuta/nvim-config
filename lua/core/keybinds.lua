@@ -1,5 +1,3 @@
------------------- GENERAL ------------------
-
 vim.keymap.set("n", "<leader>wq", ":wqa<CR>", { desc = "Save and quit" })
 vim.keymap.set("n", "<leader>qq", ":q!<CR>", { desc = "Force quit" })
 vim.keymap.set("n", "<leader>ww", ":w<CR>", { desc = "Save file" })
@@ -198,3 +196,14 @@ end, { desc = "Lazygit file history" })
 vim.keymap.set("n", "<leader>lGL", function()
   Snacks.lazygit.log()
 end, { desc = "Lazygit repository log" })
+
+------------------ DASHBOARD (Hidden Keybinds) ------------------
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "snacks_dashboard",
+  callback = function()
+    vim.defer_fn(function()
+      vim.keymap.set("n", "l", ":Lazy<CR>", { buffer = true, silent = true })
+    end, 100) -- Small delay to ensure Snacks doesn't overwrite
+  end,
+})
