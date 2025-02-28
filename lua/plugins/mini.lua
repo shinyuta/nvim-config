@@ -49,7 +49,7 @@ return {
 		vim.api.nvim_set_hl(0, "MiniStatuslineFilename", { fg = "#d8dee9", bg = "none" })
 		vim.api.nvim_set_hl(0, "MiniStatuslineInactive", { fg = "#100F14", bg = "none" })
 
-		-- Other Mini modules you might want to configure at the same time
+		-- Other Mini modules
 		require("mini.comment").setup()
 		require("mini.indentscope").setup()
 		require("mini.surround").setup()
