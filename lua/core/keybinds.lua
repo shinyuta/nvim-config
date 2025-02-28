@@ -145,18 +145,6 @@ vim.keymap.set("n", "ss", require("substitute").line, { desc = "Substitute line"
 vim.keymap.set("n", "S", require("substitute").eol, { desc = "Substitute to end of line" })
 vim.keymap.set("x", "s", require("substitute").visual, { desc = "Substitute visual" })
 
------------------- MISC ------------------
-
-vim.keymap.set("n", "<C-e>", ":Telescope noice<CR>", { desc = "Telescope Noice" })
-vim.keymap.set("n", "<leader>td", "<cmd>Dooing<cr>", { desc = "Open Dooing" })
-vim.keymap.set("n", "<leader>m", require("treesj").toggle, { desc = "Toggle Treesj" })
-vim.keymap.set("n", "<leader>j", function()
-  require("treesj").join()
-end, { desc = "Treesj Join" })
-vim.keymap.set("n", "<leader>M", function()
-  require("treesj").toggle({ split = { recursive = true } })
-end, { desc = "Toggle Treesj recursive" })
-
 ------------------ SNACKS ------------------
 
 vim.keymap.set("n", "<leader>dn", function()
@@ -204,6 +192,12 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.defer_fn(function()
       vim.keymap.set("n", "l", ":Lazy<CR>", { buffer = true, silent = true })
+      vim.keymap.set("n", "k", ":edit ~/.config/nvim/lua/core/keybinds.lua<CR>", { buffer = true, silent = true })
     end, 100) -- Small delay to ensure Snacks doesn't overwrite
   end,
 })
+
+------------------ MISC ------------------
+
+vim.keymap.set("n", "<C-e>", ":Telescope noice<CR>", { desc = "Telescope Noice" })
+vim.keymap.set("n", "<leader>td", "<cmd>Dooing<cr>", { desc = "Open Dooing" })

@@ -1,27 +1,47 @@
 return {
   "nvimtools/none-ls.nvim",
-  dependencies = {
-    "nvimtools/none-ls-extras.nvim",
-  },
+  dependencies = { "nvimtools/none-ls-extras.nvim" },
+  event = { "BufReadPre", "BufNewFile" },
+  ft = { "lua", "python", "javascript", "yaml", "ruby", "markdown" },
   config = function()
     local null_ls = require("null-ls")
-    null_ls.setup({
-      sources = {
 
+    local sources_by_ft = {
+      lua = {
         null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.isort, -- python
-        null_ls.builtins.formatting.prettier,
-        null_ls.builtins.formatting.rubocop,
+      },
+      python = {
+        null_ls.builtins.formatting.isort,
         null_ls.builtins.formatting.black,
-        null_ls.builtins.formatting.codespell, -- text file spellings.
-
-        null_ls.builtins.diagnostics.yamllint,
-        null_ls.builtins.diagnostics.rubocop,
+      },
+      javascript = {
+        null_ls.builtins.formatting.prettier,
         require("none-ls.diagnostics.eslint_d"),
-
+      },
+      yaml = {
+        null_ls.builtins.diagnostics.yamllint,
+      },
+      ruby = {
+        null_ls.builtins.formatting.rubocop,
+        null_ls.builtins.diagnostics.rubocop,
+      },
+      markdown = {
+        null_ls.builtins.formatting.codespell,
+      },
+      git = {
         null_ls.builtins.code_actions.gitsigns,
       },
-    })
+    }
 
+    local ft = vim.bo.filetype
+    local sources = {}
+
+    for _, source in ipairs(sources_by_ft[ft] or {}) do
+      table.insert(sources, source)
+    end
+
+    null_ls.setup({
+      sources = sources,
+    })
   end,
 }
