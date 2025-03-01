@@ -14,7 +14,7 @@ return {
 				null_ls.builtins.formatting.isort,
 				null_ls.builtins.formatting.black,
 
-				-- JavaScript/TypeScript/HTML/CSS/Markdown/JSON/YAML
+				-- JS/TS/HTML/CSS/Markdown/JSON/YAML
 				null_ls.builtins.formatting.prettier.with({
 					filetypes = {
 						"javascript",

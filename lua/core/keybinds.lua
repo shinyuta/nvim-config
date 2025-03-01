@@ -35,9 +35,9 @@ vim.keymap.set("n", "<leader>gf", function()
 	local ft = vim.bo.filetype
 
 	local prefer_none_ls = {
-		"lua",
 		"python",
 		"javascript",
+		"lua",
 		"typescript",
 		"markdown",
 		"yaml",
@@ -56,6 +56,8 @@ vim.keymap.set("n", "<leader>gf", function()
 	end, vim.lsp.get_active_clients({ bufnr = bufnr }))
 
 	if vim.tbl_contains(prefer_none_ls, ft) and #none_ls_clients > 0 then
+		vim.notify("⚡ Formatting " .. ft .. " using none-ls", "info", { title = "Formatter" })
+
 		vim.lsp.buf.format({
 			bufnr = bufnr,
 			filter = function(client)
@@ -63,6 +65,8 @@ vim.keymap.set("n", "<leader>gf", function()
 			end,
 		})
 	else
+		vim.notify("  Formatting " .. ft .. " using LSP", "info", { title = "Formatter" })
+
 		vim.lsp.buf.format({ bufnr = bufnr })
 	end
 end, { desc = "Smart Format File" })
@@ -72,6 +76,7 @@ end, { desc = "Smart Format File" })
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "Find files" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
+vim.keymap.set("n", "<leader>ld", ":Telescope diagnostics bufnr=0<CR>", { desc = "Show file diagnostics (Telescope)" })
 
 ------------------ HARPOON ------------------
 
@@ -140,9 +145,9 @@ vim.keymap.set("n", "<leader>d?", function()
 end, { desc = "Show scopes" })
 vim.keymap.set("n", "<leader>df", "<cmd>Telescope dap frames<cr>", { desc = "Telescope frames" })
 vim.keymap.set("n", "<leader>dh", "<cmd>Telescope dap commands<cr>", { desc = "Telescope commands" })
-vim.keymap.set("n", "<leader>de", function()
-	require("telescope.builtin").diagnostics({ default_text = ":E:" })
-end, { desc = "Filter diagnostics" })
+vim.keymap.set("n", "<leader>e", function()
+	vim.diagnostic.open_float(nil, { focusable = false })
+end, { desc = "Show diagnostics in floating window" })
 
 ------------------ BUFFERLINE ------------------
 

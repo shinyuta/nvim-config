@@ -45,7 +45,7 @@ vim.opt.pumheight = 10
 vim.opt.completeopt = { "menuone", "noselect" }
 
 -- Command-line appearance (cleaner)
-vim.opt.cmdheight = 0    -- Hide cmdline unless needed
+vim.opt.cmdheight = 0 -- Hide cmdline unless needed
 vim.opt.showmode = false -- Statusline already shows mode
 
 -- Statusline
@@ -59,15 +59,28 @@ vim.opt.shortmess:append("I")
 
 -- Auto trim trailing whitespace when saving
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  command = ":%s/\\s\\+$//e",
+	pattern = "*",
+	command = ":%s/\\s\\+$//e",
 })
 
 -- Special handling for Snacks dashboard (no numbers, clean look)
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "snacks_dashboard",
-  callback = function()
-    vim.opt_local.number = false
-    vim.opt_local.relativenumber = false
-  end,
+	pattern = "snacks_dashboard",
+	callback = function()
+		vim.opt_local.number = false
+		vim.opt_local.relativenumber = false
+	end,
+})
+
+-- Diagnostics Configuration (Global)
+vim.diagnostic.config({
+	virtual_text = false, -- Removes inline errors
+	signs = true, -- Keep signs in the left gutter
+	underline = true, -- Keeps underline under errors/warnings
+	update_in_insert = false, -- Avoid diagnostics while typing
+	severity_sort = true, -- Sort diagnostics by severity
+	float = {
+		border = "rounded",
+		focusable = false,
+	},
 })
