@@ -84,3 +84,24 @@ vim.diagnostic.config({
 		focusable = false,
 	},
 })
+
+-- explicitly stating shell (ZSH)
+vim.opt.shell = "/bin/zsh"
+
+-- disable unused providers
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+
+-- runtimepath cleaner
+local unwanted_paths = {
+	vim.fn.expand("~/.vim"),
+	vim.fn.expand("~/.vim/after"),
+	"/usr/share/vim/vimfiles",
+	"/usr/local/share/vim/vimfiles",
+}
+
+for _, path in ipairs(unwanted_paths) do
+	vim.opt.runtimepath:remove(path)
+end
