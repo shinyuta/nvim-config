@@ -1,47 +1,45 @@
 return {
-  "nvimtools/none-ls.nvim",
-  dependencies = { "nvimtools/none-ls-extras.nvim" },
-  event = { "BufReadPre", "BufNewFile" },
-  ft = { "lua", "python", "javascript", "yaml", "ruby", "markdown" },
-  config = function()
-    local null_ls = require("null-ls")
+	"nvimtools/none-ls.nvim",
+	dependencies = { "nvimtools/none-ls-extras.nvim" },
+	event = { "BufReadPre", "BufNewFile" },
+	config = function()
+		local null_ls = require("null-ls")
 
-    local sources_by_ft = {
-      lua = {
-        null_ls.builtins.formatting.stylua,
-      },
-      python = {
-        null_ls.builtins.formatting.isort,
-        null_ls.builtins.formatting.black,
-      },
-      javascript = {
-        null_ls.builtins.formatting.prettier,
-        require("none-ls.diagnostics.eslint_d"),
-      },
-      yaml = {
-        null_ls.builtins.diagnostics.yamllint,
-      },
-      ruby = {
-        null_ls.builtins.formatting.rubocop,
-        null_ls.builtins.diagnostics.rubocop,
-      },
-      markdown = {
-        null_ls.builtins.formatting.codespell,
-      },
-      git = {
-        null_ls.builtins.code_actions.gitsigns,
-      },
-    }
+		null_ls.setup({
+			sources = {
+				-- Lua
+				null_ls.builtins.formatting.stylua,
 
-    local ft = vim.bo.filetype
-    local sources = {}
+				-- Python
+				null_ls.builtins.formatting.isort,
+				null_ls.builtins.formatting.black,
 
-    for _, source in ipairs(sources_by_ft[ft] or {}) do
-      table.insert(sources, source)
-    end
+				-- JavaScript/TypeScript/HTML/CSS/Markdown/JSON/YAML
+				null_ls.builtins.formatting.prettier.with({
+					filetypes = {
+						"javascript",
+						"typescript",
+						"html",
+						"css",
+						"json",
+						"yaml",
+						"markdown",
+					},
+				}),
 
-    null_ls.setup({
-      sources = sources,
-    })
-  end,
+				-- Ruby
+				null_ls.builtins.formatting.rubocop,
+
+				-- Go
+				null_ls.builtins.formatting.gofumpt,
+
+				-- C/C++
+				null_ls.builtins.formatting.clang_format,
+
+				-- Spellcheck and misc
+				null_ls.builtins.formatting.codespell,
+				null_ls.builtins.code_actions.gitsigns,
+			},
+		})
+	end,
 }
