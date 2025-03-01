@@ -9,7 +9,7 @@ return {
 
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		lazy = false,
+		cmd = "MasonToolsUpdate", -- Only loads if you explicitly run :MasonToolsUpdate
 		dependencies = { "williamboman/mason.nvim" },
 		config = function()
 			require("mason-tool-installer").setup({
@@ -29,7 +29,7 @@ return {
 
 	{
 		"williamboman/mason-lspconfig.nvim",
-		lazy = false,
+		event = { "BufReadPre", "BufNewFile" }, -- Only loads if you open a file
 		dependencies = {
 			"williamboman/mason.nvim",
 			"neovim/nvim-lspconfig",
