@@ -77,6 +77,13 @@ local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "Find files" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
 vim.keymap.set("n", "<leader>ld", ":Telescope diagnostics bufnr=0<CR>", { desc = "Show file diagnostics (Telescope)" })
+vim.keymap.set("n", "<leader>fr", ":Telescope frecency<CR>", { desc = "Telescope Frequent Files" })
+vim.keymap.set("n", "<leader>fs", function()
+	require("telescope.builtin").find_files({
+		cwd = "~/Desktop/notes/work/school",
+		find_command = { "fd", "--type", "f", "--ignore-file", ".ignore" },
+	})
+end, { desc = "Telescope Find School Files" })
 
 ------------------ HARPOON ------------------
 
