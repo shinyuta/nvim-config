@@ -80,7 +80,7 @@ return {
 			},
 		},
 
-		-- NOTIFY
+		-- test
 		notifier = {
 			enabled = true,
 			timeout = 2000, -- default timeout in ms

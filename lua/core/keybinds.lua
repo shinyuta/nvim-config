@@ -84,6 +84,43 @@ vim.keymap.set("n", "<leader>fs", function()
 		find_command = { "fd", "--type", "f", "--ignore-file", ".ignore" },
 	})
 end, { desc = "Telescope Find School Files" })
+vim.keymap.set("n", "<leader>fp", function()
+	require("telescope").load_extension("project") -- Forces it to always reload
+	require("telescope").extensions.project.project()
+end, { desc = "Telescope Project Switcher" })
+
+------------------ desc ------------------
+
+local spectre = require("spectre")
+
+vim.keymap.set("n", "<leader>sf", function()
+	spectre.open_file_search({ select_word = true })
+end, { desc = "Search & Replace in Current File" })
+
+vim.keymap.set("n", "<leader>sb", function()
+	spectre.open({ is_insert_mode = false, search_text = "", is_file = false })
+end, { desc = "Search & Replace in Open Buffers" })
+
+vim.api.nvim_create_user_command("CleanSpectreJunk", function()
+	vim.fn.jobstart({
+		"find",
+		".",
+		"-type",
+		"f",
+		"-name",
+		"*-E*",
+		"-delete",
+	}, {
+		stdout_buffered = true,
+		on_exit = function(_, code)
+			if code == 0 then
+				vim.notify("Spectre junk files cleaned successfully!", vim.log.levels.INFO, { title = "Cleanup" })
+			else
+				vim.notify("Failed to clean Spectre junk files.", vim.log.levels.ERROR, { title = "Cleanup" })
+			end
+		end,
+	})
+end, { desc = "Remove Spectre backup files (-E files) from current directory" })
 
 ------------------ HARPOON ------------------
 
@@ -173,15 +210,15 @@ end, { desc = "Delete buffer" })
 
 vim.keymap.set("n", "<leader>tc", function()
 	if vim.bo.filetype == "java" then
-		require("jdtls").test_class()
+		require("jdtls").desc_class()
 	end
-end, { desc = "Test class (Java)" })
+end, { desc = "desc class (Java)" })
 
 vim.keymap.set("n", "<leader>tm", function()
 	if vim.bo.filetype == "java" then
-		require("jdtls").test_nearest_method()
+		require("jdtls").desc_nearest_method()
 	end
-end, { desc = "Test method (Java)" })
+end, { desc = "desc method (Java)" })
 
 ------------------ SUBSTITUTE ------------------
 
