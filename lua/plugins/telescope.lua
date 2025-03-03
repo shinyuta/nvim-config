@@ -16,7 +16,7 @@ return {
 				if stat and stat.size > 100 * 1024 then
 					-- File is too large for preview
 					return vim.schedule(function()
-						vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "⚠️ File too large to preview" })
+						vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "⚠️  File too large to preview" })
 					end)
 				end
 
