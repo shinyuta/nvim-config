@@ -74,22 +74,39 @@ end, { desc = "Smart Format File" })
 ------------------ TELESCOPE ------------------
 
 local builtin = require("telescope.builtin")
+local telescope_loader = require("core.telescope-loader")
+
 vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "Find files" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
-vim.keymap.set("n", "<leader>ld", ":Telescope diagnostics bufnr=0<CR>", { desc = "Show file diagnostics (Telescope)" })
-vim.keymap.set("n", "<leader>fr", ":Telescope frecency<CR>", { desc = "Telescope Frequent Files" })
+
 vim.keymap.set("n", "<leader>fs", function()
-	require("telescope.builtin").find_files({
+	builtin.find_files({
 		cwd = "~/Desktop/notes/work/school",
 		find_command = { "fd", "--type", "f", "--ignore-file", ".ignore" },
 	})
 end, { desc = "Telescope Find School Files" })
+
+vim.keymap.set("n", "<leader>fz", function()
+	telescope_loader.load_common_extensions()
+	require("telescope").extensions.zoxide.list()
+end, { desc = "Zoxide jump" })
+
 vim.keymap.set("n", "<leader>fp", function()
-	require("telescope").load_extension("project") -- Forces it to always reload
+	telescope_loader.load_common_extensions()
 	require("telescope").extensions.project.project()
 end, { desc = "Telescope Project Switcher" })
 
------------------- desc ------------------
+vim.keymap.set("n", "<C-e>", function()
+	telescope_loader.load_common_extensions()
+	require("telescope").extensions.noice.noice()
+end, { desc = "Telescope Noice" })
+
+vim.keymap.set("n", "<leader>fy", function()
+	telescope_loader.load_common_extensions()
+	require("telescope").extensions.yank_history.yank_history()
+end, { desc = "Yank history (Telescope)" })
+
+------------------ SPECTRE ------------------
 
 local spectre = require("spectre")
 
@@ -122,7 +139,35 @@ vim.api.nvim_create_user_command("CleanSpectreJunk", function()
 	})
 end, { desc = "Remove Spectre backup files (-E files) from current directory" })
 
------------------- HARPOON ------------------
+------------------ TROUBLE ------------------
+
+local trouble = require("trouble")
+
+vim.keymap.set("n", "<leader>xx", function()
+	trouble.toggle("diagnostics")
+end, { desc = "Diagnostics (Trouble)" })
+
+vim.keymap.set("n", "<leader>xX", function()
+	trouble.toggle("diagnostics", { filter = { buf = 0 } })
+end, { desc = "Buffer Diagnostics (Trouble)" })
+
+vim.keymap.set("n", "<leader>cs", function()
+	trouble.toggle("symbols", { focus = false })
+end, { desc = "Symbols (Trouble)" })
+
+vim.keymap.set("n", "<leader>cl", function()
+	trouble.toggle("lsp", { focus = false, win = { position = "right" } })
+end, { desc = "LSP Definitions/References (Trouble)" })
+
+vim.keymap.set("n", "<leader>xL", function()
+	trouble.toggle("loclist")
+end, { desc = "Location List (Trouble)" })
+
+vim.keymap.set("n", "<leader>xQ", function()
+	trouble.toggle("qflist")
+end, { desc = "Quickfix List (Trouble)" })
+
+----------------- HARPOON ------------------
 
 local harpoon = require("harpoon")
 harpoon:setup()
@@ -210,15 +255,38 @@ end, { desc = "Delete buffer" })
 
 vim.keymap.set("n", "<leader>tc", function()
 	if vim.bo.filetype == "java" then
-		require("jdtls").desc_class()
+		require("jdtls").test_class()
 	end
-end, { desc = "desc class (Java)" })
+end, { desc = "Test class (Java)" })
 
 vim.keymap.set("n", "<leader>tm", function()
 	if vim.bo.filetype == "java" then
-		require("jdtls").desc_nearest_method()
+		require("jdtls").test_nearest_method()
 	end
-end, { desc = "desc method (Java)" })
+end, { desc = "Test method (Java)" })
+
+------------------ TOGGLETERM -----------------
+
+local Terminal = require("toggleterm.terminal").Terminal
+
+local float_term = Terminal:new({ direction = "float" })
+local horizontal_term = Terminal:new({ direction = "horizontal", size = 12 })
+local vertical_term = Terminal:new({ direction = "vertical", size = 50 })
+
+vim.keymap.set("n", "<leader>tt", function()
+	float_term:toggle()
+end, { desc = "Floating terminal" })
+
+vim.keymap.set("n", "<leader>th", function()
+	horizontal_term:toggle()
+end, { desc = "Horizontal terminal" })
+
+vim.keymap.set("n", "<leader>tv", function()
+	vertical_term:toggle()
+end, { desc = "Vertical terminal" })
+
+-- Optional: Global map to toggle last used terminal
+vim.keymap.set("t", "<C-t>", "<C-\\><C-n>", { desc = "Escape terminal mode" })
 
 ------------------ SUBSTITUTE ------------------
 
@@ -236,10 +304,6 @@ end, { desc = "Hide Snacks notifications" })
 vim.keymap.set("n", "<leader>rF", function()
 	Snacks.rename.rename_file()
 end, { desc = "Rename current file" })
-
-vim.keymap.set("n", "<leader>tt", function()
-	Snacks.terminal()
-end, { desc = "Open Snacks terminal" })
 
 vim.keymap.set("n", "<leader>zz", function()
 	Snacks.zen()
@@ -281,5 +345,4 @@ vim.api.nvim_create_autocmd("FileType", {
 
 ------------------ MISC ------------------
 
-vim.keymap.set("n", "<C-e>", ":Telescope noice<CR>", { desc = "Telescope Noice" })
 vim.keymap.set("n", "<leader>td", "<cmd>Dooing<cr>", { desc = "Open Dooing" })
