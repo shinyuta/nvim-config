@@ -138,7 +138,3 @@ If you want to create templates for other types (e.g., meeting notes), just add 
 | `<leader>wC` | Create/link note in current dir (simple template) |
 | `<leader>wL` | Insert link to existing note                      |
 | `<leader>wE` | Create new essay (picker)                         |
-
----
-
-This documentation can be placed inside `docs/obsidian-keybinds.md` for future reference.
