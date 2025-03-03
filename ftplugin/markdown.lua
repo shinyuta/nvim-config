@@ -1,18 +1,23 @@
--- Markdown specific settings
-vim.opt.wrap = true -- Wrap text
-vim.opt.linebreak = true -- Line break on whole words
-vim.opt.textwidth = 80
-vim.opt.formatoptions:append("t") -- Enables automatic wrapping
+-- Markdown-specific settings (Obsidian-friendly)
 
--- removes unnecessary stuff when writing
-vim.opt.number = true
-vim.opt.relativenumber = false
-vim.opt.cursorline = false
+vim.opt_local.wrap = true
+vim.opt_local.linebreak = true
+vim.opt_local.textwidth = 80
+vim.opt_local.formatoptions:append("t")
 
--- Spell check
-vim.opt.spelllang = "en_us"
-vim.opt.spell = true
+-- Focused writing UI
+vim.opt_local.number = true
+vim.opt_local.relativenumber = false
+vim.opt_local.cursorline = false
 
--- obsidian (keybinds)
-vim.keymap.set("n", "<leader>nt", "<cmd>ObsidianNewFromTemplate <CR>")
-vim.keymap.set("n", "<leader>to", "<cmd>ObsidianTOC <CR>")
+-- Spell check (great for notes)
+vim.opt_local.spelllang = "en_us"
+vim.opt_local.spell = true
+
+-- Better link display in markdown
+vim.opt_local.conceallevel = 2
+
+-- Consistent indentation (great if you write code snippets in notes)
+vim.opt_local.expandtab = true
+vim.opt_local.shiftwidth = 2
+vim.opt_local.softtabstop = 2

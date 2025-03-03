@@ -1,6 +1,7 @@
 ------------------ SNACKS IMPORT -----------------
 
 require("core.snacks-keybinds")
+require("core.obsidian-keybinds")
 
 ------------------ FILE OPERATIONS ------------------
 
