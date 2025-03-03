@@ -1,3 +1,5 @@
+------------------ FILE OPERATIONS ------------------
+
 vim.keymap.set("n", "<leader>wq", ":wqa<CR>", { desc = "Save and quit" })
 vim.keymap.set("n", "<leader>qq", ":q!<CR>", { desc = "Force quit" })
 vim.keymap.set("n", "<leader>ww", ":w<CR>", { desc = "Save file" })
@@ -33,7 +35,6 @@ vim.keymap.set("n", "<leader>cp", vim.diagnostic.goto_prev, { desc = "Previous d
 vim.keymap.set("n", "<leader>gf", function()
 	local bufnr = vim.api.nvim_get_current_buf()
 	local ft = vim.bo.filetype
-
 	local prefer_none_ls = {
 		"python",
 		"javascript",
@@ -50,14 +51,11 @@ vim.keymap.set("n", "<leader>gf", function()
 		"c",
 		"cpp",
 	}
-
 	local none_ls_clients = vim.tbl_filter(function(client)
 		return client.name == "null-ls"
 	end, vim.lsp.get_active_clients({ bufnr = bufnr }))
-
 	if vim.tbl_contains(prefer_none_ls, ft) and #none_ls_clients > 0 then
 		vim.notify("⚡ Formatting " .. ft .. " using none-ls", "info", { title = "Formatter" })
-
 		vim.lsp.buf.format({
 			bufnr = bufnr,
 			filter = function(client)
@@ -66,7 +64,6 @@ vim.keymap.set("n", "<leader>gf", function()
 		})
 	else
 		vim.notify("  Formatting " .. ft .. " using LSP", "info", { title = "Formatter" })
-
 		vim.lsp.buf.format({ bufnr = bufnr })
 	end
 end, { desc = "Smart Format File" })
@@ -78,7 +75,6 @@ local telescope_loader = require("core.telescope-loader")
 
 vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "Find files" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
-
 vim.keymap.set("n", "<leader>fs", function()
 	builtin.find_files({
 		cwd = "~/Desktop/notes/work/school",
@@ -89,7 +85,7 @@ end, { desc = "Telescope Find School Files" })
 vim.keymap.set("n", "<leader>fz", function()
 	telescope_loader.load_common_extensions()
 	require("telescope").extensions.zoxide.list()
-end, { desc = "Zoxide jump" })
+end, { desc = "Zoxide search" })
 
 vim.keymap.set("n", "<leader>fp", function()
 	telescope_loader.load_common_extensions()
@@ -119,15 +115,7 @@ vim.keymap.set("n", "<leader>sb", function()
 end, { desc = "Search & Replace in Open Buffers" })
 
 vim.api.nvim_create_user_command("CleanSpectreJunk", function()
-	vim.fn.jobstart({
-		"find",
-		".",
-		"-type",
-		"f",
-		"-name",
-		"*-E*",
-		"-delete",
-	}, {
+	vim.fn.jobstart({ "find", ".", "-type", "f", "-name", "*-E*", "-delete" }, {
 		stdout_buffered = true,
 		on_exit = function(_, code)
 			if code == 0 then
@@ -146,7 +134,6 @@ local trouble = require("trouble")
 vim.keymap.set("n", "<leader>xx", function()
 	trouble.toggle("diagnostics")
 end, { desc = "Diagnostics (Trouble)" })
-
 vim.keymap.set("n", "<leader>xX", function()
 	trouble.toggle("diagnostics", { filter = { buf = 0 } })
 end, { desc = "Buffer Diagnostics (Trouble)" })
@@ -154,26 +141,62 @@ end, { desc = "Buffer Diagnostics (Trouble)" })
 vim.keymap.set("n", "<leader>cs", function()
 	trouble.toggle("symbols", { focus = false })
 end, { desc = "Symbols (Trouble)" })
-
 vim.keymap.set("n", "<leader>cl", function()
 	trouble.toggle("lsp", { focus = false, win = { position = "right" } })
 end, { desc = "LSP Definitions/References (Trouble)" })
-
 vim.keymap.set("n", "<leader>xL", function()
 	trouble.toggle("loclist")
 end, { desc = "Location List (Trouble)" })
-
 vim.keymap.set("n", "<leader>xQ", function()
 	trouble.toggle("qflist")
 end, { desc = "Quickfix List (Trouble)" })
 
------------------ HARPOON ------------------
+------------------ HARPOON ------------------
 
 local harpoon = require("harpoon")
 harpoon:setup()
+
+local uv = vim.loop
+
 vim.keymap.set("n", "<leader>ha", function()
-	harpoon:list():add()
-end, { desc = "Harpoon add file" })
+	local harpoon_list = harpoon:list()
+	local current_file = uv.fs_realpath(vim.fn.expand("%:p"))
+
+	local is_already_added = false
+	for _, item in ipairs(harpoon_list.items) do
+		if uv.fs_realpath(item.value) == current_file then
+			is_already_added = true
+			break
+		end
+	end
+
+	if is_already_added then
+		harpoon.ui:toggle_quick_menu(harpoon_list)
+	else
+		harpoon_list:add()
+		vim.notify("Added file to Harpoon!", vim.log.levels.INFO, { title = "Harpoon" })
+	end
+end, { desc = "Harpoon Add or Open Menu" })
+
+vim.keymap.set("n", "<leader>hd", function()
+	local harpoon_list = harpoon:list()
+	local current_file = uv.fs_realpath(vim.fn.expand("%:p"))
+
+	local index = nil
+	for i, item in ipairs(harpoon_list.items) do
+		if uv.fs_realpath(item.value) == current_file then
+			index = i
+			break
+		end
+	end
+
+	if index then
+		harpoon_list:remove_at(index)
+		vim.notify("Removed file from Harpoon!", vim.log.levels.WARN, { title = "Harpoon" })
+	else
+		vim.notify("File is not in Harpoon list", vim.log.levels.INFO, { title = "Harpoon" })
+	end
+end, { desc = "Harpoon Remove Current File" })
 
 vim.keymap.set("n", "<leader>hh", function()
 	harpoon.ui:toggle_quick_menu(harpoon:list())
@@ -195,7 +218,7 @@ vim.keymap.set("n", "<leader>h4", function()
 	harpoon:list():select(4)
 end, { desc = "Harpoon file 4" })
 
------------------- DEBUGGING ------------------
+------------------ DEBUGGING (DAP) ------------------
 
 vim.keymap.set("n", "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", { desc = "Toggle breakpoint" })
 vim.keymap.set(
@@ -234,6 +257,7 @@ vim.keymap.set("n", "<leader>d?", function()
 end, { desc = "Show scopes" })
 vim.keymap.set("n", "<leader>df", "<cmd>Telescope dap frames<cr>", { desc = "Telescope frames" })
 vim.keymap.set("n", "<leader>dh", "<cmd>Telescope dap commands<cr>", { desc = "Telescope commands" })
+
 vim.keymap.set("n", "<leader>e", function()
 	vim.diagnostic.open_float(nil, { focusable = false })
 end, { desc = "Show diagnostics in floating window" })
@@ -245,7 +269,7 @@ vim.keymap.set("n", "<leader>bn", "<cmd>BufferLineCycleNext<cr>", { desc = "Next
 vim.keymap.set("n", "<leader>bm", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<cr>", { desc = "Pin buffer" })
 vim.keymap.set("n", "<leader>bx", function()
-	Snacks.bufdelete.other(opts)
+	Snacks.bufdelete.other()
 end, { desc = "Delete other buffers" })
 vim.keymap.set("n", "<leader>bd", function()
 	Snacks.bufdelete()
@@ -265,7 +289,7 @@ vim.keymap.set("n", "<leader>tm", function()
 	end
 end, { desc = "Test method (Java)" })
 
------------------- TOGGLETERM -----------------
+------------------ TOGGLETERM ------------------
 
 local Terminal = require("toggleterm.terminal").Terminal
 
@@ -285,7 +309,6 @@ vim.keymap.set("n", "<leader>tv", function()
 	vertical_term:toggle()
 end, { desc = "Vertical terminal" })
 
--- Optional: Global map to toggle last used terminal
 vim.keymap.set("t", "<C-t>", "<C-\\><C-n>", { desc = "Escape terminal mode" })
 
 ------------------ SUBSTITUTE ------------------
@@ -309,7 +332,7 @@ vim.keymap.set("n", "<leader>zz", function()
 	Snacks.zen()
 end, { desc = "Toggle Snacks Zen mode" })
 
------------------- SNACKS LAZYGIT  ------------------
+------------------ SNACKS LAZYGIT ------------------
 
 vim.keymap.set("n", "<leader>lg", function()
 	Snacks.lazygit()
@@ -331,7 +354,7 @@ vim.keymap.set("n", "<leader>lGL", function()
 	Snacks.lazygit.log()
 end, { desc = "Lazygit repository log" })
 
------------------- DASHBOARD (Hidden Keybinds) ------------------
+------------------ DASHBOARD (HIDDEN KEYBINDS) ------------------
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "snacks_dashboard",
@@ -339,7 +362,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.defer_fn(function()
 			vim.keymap.set("n", "l", ":Lazy<CR>", { buffer = true, silent = true })
 			vim.keymap.set("n", "k", ":edit ~/.config/nvim/lua/core/keybinds.lua<CR>", { buffer = true, silent = true })
-		end, 100) -- Small delay to ensure Snacks doesn't overwrite
+		end, 100)
 	end,
 })
 
