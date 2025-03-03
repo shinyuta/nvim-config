@@ -24,3 +24,4 @@ require("lazy").setup("plugins", {
 
 require("core.options")
 require("core.keybinds")
+require("core.autocmds")
