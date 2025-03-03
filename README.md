@@ -159,7 +159,7 @@ This configuration includes a comprehensive **Obsidian.nvim workflow** designed 
 
 For full details on keybinds, directory structure, templates, and workflows, see:
 
-➡️ [Obsidian.nvim Keybinds and Workflow Documentation](docs/obsidian-keybinds.md)
+➡️ [Obsidian.nvim Keybinds and Workflow Documentation](docs/obsidian.md)
 
 This document explains how to adapt the system to your own directory layout, add new note types, and extend functionality.
 
