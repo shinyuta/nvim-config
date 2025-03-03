@@ -87,19 +87,19 @@ end
 -- Obsidian Workflow Keybinds (Markdown-based Personal Knowledge Management)
 
 vim.keymap.set("n", "<leader>wn", ":ObsidianToday<CR>", { noremap = true, silent = true, desc = "Open Today's Note" })
-vim.keymap.set("n", "<leader>wP", function()
-	create_note_in_folder("~/Desktop/wiki/personal", "note")
-end, { noremap = true, silent = true, desc = "Create Personal Note (Standalone)" })
-vim.keymap.set("n", "<leader>wY", function()
-	create_note_in_folder("~/Desktop/wiki/school/Y3S1", "note")
-end, { noremap = true, silent = true, desc = "Create Y3S1 Note (Standalone)" })
 
-vim.keymap.set(
-	"n",
-	"<leader>ws",
-	":ObsidianQuickSwitch<CR>",
-	{ noremap = true, silent = true, desc = "Search & Open Note" }
-)
+vim.keymap.set("n", "<leader>wp", function()
+	vim.ui.select({ "personal", "Y3S1" }, {
+		prompt = "Where to save the note?",
+	}, function(choice)
+		if choice == "personal" then
+			create_note_in_folder("~/Desktop/wiki/personal", "note")
+		elseif choice == "Y3S1" then
+			create_note_in_folder("~/Desktop/wiki/school/Y3S1", "note")
+		end
+	end)
+end, { noremap = true, silent = true, desc = "Create New Note (Picker)" })
+
 vim.keymap.set(
 	"n",
 	"<leader>wf",
@@ -108,19 +108,20 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "<leader>wb", ":ObsidianBacklinks<CR>", { noremap = true, silent = true, desc = "Show Backlinks" })
 
-vim.keymap.set("n", "<leader>wS", function()
+vim.keymap.set("n", "<leader>ws", function()
 	require("telescope.builtin").find_files({
 		cwd = expand_path("~/Desktop/wiki"),
-		prompt_title = "Search Notes",
+		prompt_title = "Search Notes in Wiki",
+		find_command = { "rg", "--files", "--iglob", "!.git/", "--iglob", "!templates/" },
 	})
 end, { noremap = true, silent = true, desc = "Search Notes in Wiki" })
 
 vim.keymap.set("n", "<leader>wc", function()
 	create_or_link_note("note")
-end, { noremap = true, silent = true, desc = "Create/Link to Note (Full Template with Backlink)" })
+end, { noremap = true, silent = true, desc = "Create/Link to Note" })
 vim.keymap.set("n", "<leader>wC", function()
 	create_or_link_note("simple")
-end, { noremap = true, silent = true, desc = "Create/Link to Note (Simple Template with Backlink)" })
+end, { noremap = true, silent = true, desc = "Create/Link to Note (simple)" })
 
 vim.keymap.set("n", "<leader>wL", function()
 	local picker = require("telescope.builtin")
@@ -156,3 +157,15 @@ vim.keymap.set("n", "<leader>wL", function()
 		end,
 	})
 end, { noremap = true, silent = true, desc = "Insert Link to Existing Note (Telescope)" })
+
+vim.keymap.set("n", "<leader>wE", function()
+	vim.ui.select({ "personal", "Y3S1" }, {
+		prompt = "Where to save the essay?",
+	}, function(choice)
+		if choice == "personal" then
+			create_note_in_folder("~/Desktop/wiki/personal", "essay")
+		elseif choice == "Y3S1" then
+			create_note_in_folder("~/Desktop/wiki/school/Y3S1", "essay")
+		end
+	end)
+end, { noremap = true, silent = true, desc = "Create Essay Note" })
