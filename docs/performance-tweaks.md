@@ -1,6 +1,6 @@
 # Neovim Performance Tweaks (Jinx Config)
 
-This document collects all the **speed and performance optimizations** applied to your Neovim configuration, along with explanations and future-proofing notes.
+This document collects all the **speed and performance optimizations** applied to this Neovim configuration, along with explanations and future-proofing notes.
 
 ---
 
@@ -76,7 +76,7 @@ Several plugins were removed completely for faster startup:
 
 ## ✅ Treesitter Language List Pruned
 
-`nvim-treesitter` was updated to only install parsers for languages you actually use:
+`nvim-treesitter` was updated to only install parsers for languages that were actually used:
 
 ```lua
 ensure_installed = {
@@ -92,13 +92,11 @@ This prevents unnecessary downloads and parsing overhead.
 
 ## ✅ Colorscheme Priority Set
 
-Your colorscheme (`rose-pine`) was given **priority = 1000** to ensure it loads **before all other plugins**. This prevents any color flashing on startup.
+The colorscheme (`rose-pine`) was given **priority = 1000** to ensure it loads **before all other plugins**. This prevents any color flashing on startup.
 
 ---
 
 ## ✅ Diagnostic Lazy Profiling
-
-You now have the habit of running:
 
 ```vim
 :Lazy profile
@@ -108,37 +106,7 @@ This allows you to detect slow plugins if any are added in the future.
 
 ---
 
-## ✅ Optional Neovim Defaults Removed
-
-These were not applied automatically yet, but you could disable some default Neovim runtime files if desired:
-
-```lua
-vim.g.loaded_matchparen = 1
-vim.g.loaded_matchit = 1
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-```
-
-This is optional — useful if you replace file browsing (like with snacks or yazi).
-
----
-
-## ✅ AutoCmd Cleanup (Optional Future Step)
-
-Your autocommands should always be **grouped** and only applied to needed filetypes to avoid unnecessary triggers.
-
-```lua
-vim.api.nvim_create_augroup("MyNeovimTweakGroup", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-    group = "MyNeovimTweakGroup",
-    pattern = { "markdown", "text" },
-    command = "setlocal spell",
-})
-```
-
----
-
-## ⚡ Final Tip
+## ⚡ Extra tip for future use
 
 Whenever adding a **new plugin**, always check:
 
@@ -153,11 +121,3 @@ Use:
 ```
 
 After every plugin change to catch slowdowns immediately.
-
----
-
-This document should live at:
-
-```
-~/.config/nvim/docs/performance-tweaks.md
-```
