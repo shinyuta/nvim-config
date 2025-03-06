@@ -4,6 +4,7 @@ return {
 	config = function()
 		local lspconfig = require("lspconfig")
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		capabilities.offsetEncoding = { "utf-16" }
 
 		local function common_on_attach(client, bufnr)
 			-- Optional space for future LSP keymaps, etc.

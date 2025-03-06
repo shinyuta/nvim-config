@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd("User", {
 	callback = function()
 		vim.defer_fn(function()
 			local startup_time = require("lazy").stats().startuptime
-			if startup_time > 130 then
+			if startup_time > 300 then
 				vim.cmd("Lazy profile")
 			end
 		end, 500)
