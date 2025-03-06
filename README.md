@@ -199,7 +199,3 @@ For a complete breakdown of the Obsidian workflow, see:
 ## 🎉 Final Tip
 
 This configuration is designed to be **future-proof**. Adding new plugins, adapting to new workflows, or adjusting settings should be quick and painless. Embrace the chaos and enjoy your **Jinx-powered Neovim!** 💥
-
----
-
-Let me know if you want this written directly into your file, or if you want a `README.md` ready to download.
