@@ -2,16 +2,6 @@
 
 ![images](./RM-images/dashboard.png)
 
-Here’s the **cleaned-up and more professional version** of your `README.md`, along with a section that links to the new `docs/keybinds.md` file.
-
----
-
-# Jinx Colorscheme + Snacks Dashboard
-
-![Dashboard Preview](./RM-images/dashboard.png)
-
----
-
 # Jinx Neovim Configuration 💥
 
 Welcome to **Jinx.nvim**, a personal Neovim configuration crafted for **speed, clarity, and flexibility** — inspired by the chaos and creativity of Jinx from _Arcane_. This setup works seamlessly on both **macOS** and **Linux**.
