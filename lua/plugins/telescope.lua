@@ -49,12 +49,12 @@ return {
 
 			-- Optional aesthetic tweaks (kept from your config)
 			local TelescopePrompt = {
-				TelescopePromptTitle = { fg = "#A9DD48", bg = "none" },
-				TelescopePreviewTitle = { fg = "#A9DD48", bg = "none" },
-				TelescopeResultsTitle = { fg = "#A9DD48", bg = "none" },
-				TelescopePromptBorder = { fg = "#A9DD48", bg = "none" },
-				TelescopePreviewBorder = { fg = "#A9DD48", bg = "none" },
-				TelescopeResultsBorder = { fg = "#A9DD48", bg = "none" },
+				TelescopePromptTitle = { fg = "#FD77DD", bg = "none" },
+				TelescopePreviewTitle = { fg = "#FD77DD", bg = "none" },
+				TelescopeResultsTitle = { fg = "#FD77DD", bg = "none" },
+				TelescopePromptBorder = { fg = "#FD77DD", bg = "none" },
+				TelescopePreviewBorder = { fg = "#FD77DD", bg = "none" },
+				TelescopeResultsBorder = { fg = "#FD77DD", bg = "none" },
 			}
 			for hl, col in pairs(TelescopePrompt) do
 				vim.api.nvim_set_hl(0, hl, col)

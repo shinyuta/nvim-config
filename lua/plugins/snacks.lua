@@ -4,18 +4,15 @@ return {
 	lazy = false,
 	---@type snacks.Config
 	opts = {
-		-- your configuration comes here
-		-- or leave it empty to use the default settings
-		-- refer to the configuration section below
 		bigfile = { enabled = false },
 
-		-- DASHBOARD
 		dashboard = {
 			enabled = true,
 			preset = {
 				keys = {
 					{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-					{ icon = " ", key = "s", desc = "Restore Session", section = "session" },
+					{ icon = " ", key = "s", desc = "Search Files", action = ":Telescope live_grep" },
+					{ icon = " ", key = "r", desc = "Restore Session", section = "session" },
 					{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 				},
 				header = [[
@@ -30,11 +27,15 @@ return {
 ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
 			},
 			sections = {
-				{ section = "header" },
+				{ section = "header", padding = 2 },
 
-				{ section = "startup", gap = 0, padding = 2, pane = 1 }, -- Ensures same gap as Git Status
+				{ section = "startup", gap = 0, padding = 1, pane = 1 },
 
-				{ section = "keys", gap = 1, padding = 2 },
+				{
+					section = "keys",
+					gap = 1, -- No extra space between section title and first key
+					padding = 2, -- Padding around the whole keys section
+				},
 
 				{
 					pane = 1,
@@ -54,36 +55,26 @@ return {
 							icon = " ",
 							title = "Git Status",
 							cmd = "git --no-pager diff --stat -B -M -C",
-							height = 10,
+							height = 8,
 						},
 					}
 					return vim.tbl_map(function(cmd)
 						return vim.tbl_extend("force", {
 							section = "terminal",
 							enabled = in_git,
-							padding = 1, -- Reduce extra space
-							gap = 1, -- Add small gap under Git Status (same as keys)
+							padding = 1,
+							gap = 1,
 							ttl = 5 * 60,
 							indent = 3,
 						}, cmd)
 					end, cmds)
 				end,
-
-				{
-					section = "terminal",
-					cmd = "echo -e '\n' && ascii-image-converter ~/.config/nvim/jinxdash.png --color --complex",
-					random = 10,
-					pane = 2,
-					indent = 4,
-					height = 30,
-				},
 			},
 		},
 
-		-- NOTIFY
 		notifier = {
 			enabled = true,
-			timeout = 2000, -- default timeout in ms
+			timeout = 2000,
 			width = { min = 40, max = 0.6 },
 			height = { min = 1, max = 0.6 },
 			style = "compact",
@@ -93,19 +84,15 @@ return {
 		indent = { enabled = false },
 		input = { enabled = false },
 		picker = { enabled = false },
-
-		-- QUICKFILE
 		quickfile = { enabled = true },
-
 		scope = { enabled = false },
 		scroll = { enabled = false },
 		statuscolumn = { enabled = false },
 		words = { enabled = false },
 
-		-- STYLES
 		styles = {
 			notification = {
-				wo = { wrap = true }, -- Wrap notifications
+				wo = { wrap = true },
 			},
 		},
 	},
