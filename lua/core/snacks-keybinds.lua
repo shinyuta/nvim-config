@@ -33,15 +33,3 @@ end, { desc = "Lazygit file history" })
 vim.keymap.set("n", "<leader>lGL", function()
 	Snacks.lazygit.log()
 end, { desc = "Lazygit repository log" })
-
------------------- DASHBOARD (HIDDEN KEYBINDS) ------------------
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "snacks_dashboard",
-	callback = function()
-		vim.defer_fn(function()
-			vim.keymap.set("n", "l", ":Lazy<CR>", { buffer = true, silent = true })
-			vim.keymap.set("n", "k", ":edit ~/.config/nvim/lua/core/keybinds.lua<CR>", { buffer = true, silent = true })
-		end, 100)
-	end,
-})
