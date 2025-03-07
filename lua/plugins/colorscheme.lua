@@ -55,8 +55,9 @@ return {
 			-- changed the color palette here to Jinx theme
 			palette = {
 				main = {
+					text = "#FDEEFC", -- Light Pink (Jinx eyes)
 					gold = "#54C1DB", -- Neon Blue (Jinx hair)
-					rose = "#FDEEFC", -- Light Pink (Jinx eyes)
+					rose = "#ffd3fb", -- Light Pink (Jinx eyes)
 					pine = "#A9DD48", -- Toxic Green (Zaun)
 					foam = "#FD77DD", -- Magenta (Jinx highlight/accent)
 				},
