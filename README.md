@@ -162,7 +162,6 @@ For a complete reference, see:
 | [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)                      | Seamless navigation between vim and tmux          |
 | [which-key.nvim](https://github.com/folke/which-key.nvim)                                    | Keybinding helper                                 |
 | [yanky.nvim](https://github.com/gbprod/yanky.nvim)                                           | Clipboard history                                 |
-| [yazi.nvim](https://github.com/mnaoqo/yazi.nvim)                                             | Yazi file manager integration                     |
 
 ---
 

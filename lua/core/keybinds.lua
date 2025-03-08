@@ -82,7 +82,7 @@ vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "Find files" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
 vim.keymap.set("n", "<leader>fs", function()
 	builtin.find_files({
-		cwd = "~/Desktop/notes/work/school",
+		cwd = "~/Desktop/wiki/",
 		find_command = { "fd", "--type", "f", "--ignore-file", ".ignore" },
 	})
 end, { desc = "Telescope Find School Files" })
@@ -313,6 +313,34 @@ end, { desc = "Horizontal terminal" })
 vim.keymap.set("n", "<leader>tv", function()
 	vertical_term:toggle()
 end, { desc = "Vertical terminal" })
+
+-- Floating terminal that runs Superfile (spf)
+local spf_term = Terminal:new({
+  cmd = "spf " .. vim.fn.getcwd(),  -- Starts Superfile in the current directory
+  direction = "float",
+  close_on_exit = true, -- Close terminal when Superfile exits
+  hidden = true,
+  float_opts = {
+    border = "curved",
+    width = math.floor(0.9 * vim.o.columns),
+    height = math.floor(0.9 * vim.o.lines),
+    winblend = 0,  -- Set to 0 for no transparency
+    title = " Superfile ",
+    title_pos = "center",
+  },
+  highlights = {
+    NormalFloat = { link = "Normal" }, -- Use a solid background color
+    FloatBorder = { guifg = "#FDEEFC", guibg = "#1E1E2E" }, -- Pink border, dark background
+  },
+  on_open = function(term)
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+  end,
+})
+
+-- Keybinding to open Superfile in a floating terminal
+vim.keymap.set("n", "<C-o>", function()
+  spf_term:toggle()
+end, { desc = "Open Superfile in floating terminal" })
 
 vim.keymap.set("t", "<C-t>", "<C-\\><C-n>", { desc = "Escape terminal mode" })
 
