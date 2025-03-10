@@ -58,7 +58,7 @@ vim.opt.completeopt = { "menuone", "noselect" }
 
 vim.opt.cmdheight = 0 -- Hide cmdline unless needed
 vim.opt.showmode = false -- Statusline already shows mode
-vim.opt.laststatus = 3 -- Global statusline (one for all splits)
+vim.opt.laststatus = 3 -- 3 for global, 2 for split.
 
 ------------------ MOUSE SUPPORT ------------------
 

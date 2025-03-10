@@ -24,8 +24,8 @@ vim.keymap.set("n", "<leader>sw", "<C-w><5", { desc = "Decrease width" })
 
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>Y", '"+Y', { desc = "Yank line to clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>d", '"+d', { desc = "Delete to system clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>D", '"+D', { desc = "Delete line to clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>yd", '"+d', { desc = "Delete to system clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>yD", '"+D', { desc = "Delete line to clipboard" })
 vim.keymap.set("n", "<leader>p", '"+p', { desc = "Paste from clipboard" })
 vim.keymap.set("n", "<leader>P", '"+P', { desc = "Paste above from clipboard" })
 
@@ -225,51 +225,59 @@ end, { desc = "Harpoon file 4" })
 
 ------------------ DEBUGGING (DAP) ------------------
 
-vim.keymap.set("n", "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", { desc = "Toggle breakpoint" })
-vim.keymap.set(
-	"n",
-	"<leader>bc",
-	"<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
-	{ desc = "Conditional breakpoint" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>bl",
-	"<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>",
-	{ desc = "Logpoint" }
-)
-vim.keymap.set("n", "<leader>br", "<cmd>lua require'dap'.clear_breakpoints()<cr>", { desc = "Clear breakpoints" })
-vim.keymap.set("n", "<leader>ba", "<cmd>Telescope dap list_breakpoints<cr>", { desc = "List breakpoints" })
-vim.keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", { desc = "Continue" })
-vim.keymap.set("n", "<leader>dj", "<cmd>lua require'dap'.step_over()<cr>", { desc = "Step over" })
-vim.keymap.set("n", "<leader>dk", "<cmd>lua require'dap'.step_into()<cr>", { desc = "Step into" })
-vim.keymap.set("n", "<leader>do", "<cmd>lua require'dap'.step_out()<cr>", { desc = "Step out" })
-vim.keymap.set("n", "<leader>dd", function()
-	require("dap").disconnect()
-	require("dapui").close()
-end, { desc = "Disconnect debug" })
-vim.keymap.set("n", "<leader>dt", function()
-	require("dap").terminate()
-	require("dapui").close()
-end, { desc = "Terminate debug" })
-vim.keymap.set("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", { desc = "Toggle REPL" })
-vim.keymap.set("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", { desc = "Run last" })
-vim.keymap.set("n", "<leader>di", function()
-	require("dap.ui.widgets").hover()
-end, { desc = "Inspect value" })
-vim.keymap.set("n", "<leader>d?", function()
-	require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes)
-end, { desc = "Show scopes" })
-vim.keymap.set("n", "<leader>df", "<cmd>Telescope dap frames<cr>", { desc = "Telescope frames" })
-vim.keymap.set("n", "<leader>dh", "<cmd>Telescope dap commands<cr>", { desc = "Telescope commands" })
+-- Breakpoints
+vim.keymap.set("n", "<leader>dbt", require'dap'.toggle_breakpoint, { desc = "Toggle Breakpoint" })
+vim.keymap.set("n", "<leader>dbc", function()
+    require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+end, { desc = "Conditional Breakpoint" })
+vim.keymap.set("n", "<leader>dbl", function()
+    require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+end, { desc = "Logpoint" })
+vim.keymap.set("n", "<leader>dbx", require'dap'.clear_breakpoints, { desc = "Clear Breakpoints" })
+vim.keymap.set("n", "<leader>dba", "<cmd>Telescope dap list_breakpoints<cr>", { desc = "List Breakpoints" })
 
-vim.keymap.set("n", "<leader>e", function()
-	vim.diagnostic.open_float(nil, { focusable = false })
-end, { desc = "Show diagnostics in floating window" })
+-- Debugging Controls
+-- MOVED to dap.lua: vim.keymap.set("n", "<leader>dc", require'dap'.continue, { desc = "Continue" })
+vim.keymap.set("n", "<leader>dn", require'dap'.step_over, { desc = "Next (Step Over)" }) -- Changed from `dso`
+vim.keymap.set("n", "<leader>di", require'dap'.step_into, { desc = "Step Into" }) -- Shortened
+vim.keymap.set("n", "<leader>do", require'dap'.step_out, { desc = "Step Out" }) -- Changed from `dso`
+
+-- Termination / Disconnect
+vim.keymap.set("n", "<leader>ddq", function()
+    require("dap").disconnect()
+    require("dapui").close()
+end, { desc = "Disconnect Debug" })
+vim.keymap.set("n", "<leader>ddt", function()
+    require("dap").terminate()
+    require("dapui").close()
+end, { desc = "Terminate Debug" })
+vim.keymap.set("n", "<leader>ddr", require'dap'.repl.toggle, { desc = "Toggle REPL" })
+vim.keymap.set("n", "<leader>ddl", require'dap'.run_last, { desc = "Run Last Debug Session" })
+
+-- Debug Views (DAP UI / Widgets)
+vim.keymap.set("n", "<leader>dvi", function()
+    require("dap.ui.widgets").hover()
+end, { desc = "Inspect Value" })
+vim.keymap.set("n", "<leader>dvs", function()
+    require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes)
+end, { desc = "Show Scopes" })
+
+-- Telescope Integrations
+vim.keymap.set("n", "<leader>dtf", "<cmd>Telescope dap frames<cr>", { desc = "Show Stack Frames" }) -- Changed desc
+vim.keymap.set("n", "<leader>dtc", "<cmd>Telescope dap commands<cr>", { desc = "Show DAP Commands" })
+
+-- Diagnostics
+vim.keymap.set("n", "<leader>dx", function()
+    vim.diagnostic.open_float(nil, { focusable = false })
+end, { desc = "Show Diagnostics in Floating Window" }) -- Changed from `<leader>e`
+
+-- Debug UI Control
+vim.keymap.set("n", "<leader>du", function()
+  require("dapui").toggle()
+end, { desc = "Toggle Debug UI" }) -- Changed from `<leader>de`
 
 ------------------ BUFFERLINE ------------------
 
-vim.keymap.set("n", "<leader>q", ":Bdelete<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<leader>bn", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bm", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<cr>", { desc = "Pin buffer" })
@@ -278,7 +286,7 @@ vim.keymap.set("n", "<leader>bx", function()
 end, { desc = "Delete other buffers" })
 vim.keymap.set("n", "<leader>bd", function()
 	Snacks.bufdelete()
-end, { desc = "Delete buffer" })
+end, { desc = "Delete Current Buffer" })
 
 ------------------ TESTING ------------------
 
@@ -316,30 +324,30 @@ end, { desc = "Vertical terminal" })
 
 -- Floating terminal that runs Superfile (spf)
 local spf_term = Terminal:new({
-  cmd = "spf " .. vim.fn.getcwd(),  -- Starts Superfile in the current directory
-  direction = "float",
-  close_on_exit = true, -- Close terminal when Superfile exits
-  hidden = true,
-  float_opts = {
-    border = "curved",
-    width = math.floor(0.9 * vim.o.columns),
-    height = math.floor(0.9 * vim.o.lines),
-    winblend = 0,  -- Set to 0 for no transparency
-    title = " Superfile ",
-    title_pos = "center",
-  },
-  highlights = {
-    NormalFloat = { link = "Normal" }, -- Use a solid background color
-    FloatBorder = { guifg = "#FDEEFC", guibg = "#1E1E2E" }, -- Pink border, dark background
-  },
-  on_open = function(term)
-    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
-  end,
+	cmd = "spf " .. vim.fn.getcwd(), -- Starts Superfile in the current directory
+	direction = "float",
+	close_on_exit = true, -- Close terminal when Superfile exits
+	hidden = true,
+	float_opts = {
+		border = "curved",
+		width = math.floor(0.9 * vim.o.columns),
+		height = math.floor(0.9 * vim.o.lines),
+		winblend = 0, -- Set to 0 for no transparency
+		title = " Superfile ",
+		title_pos = "center",
+	},
+	highlights = {
+		NormalFloat = { link = "Normal" }, -- Use a solid background color
+		FloatBorder = { guifg = "#FDEEFC", guibg = "#1E1E2E" }, -- Pink border, dark background
+	},
+	on_open = function(term)
+		vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+	end,
 })
 
 -- Keybinding to open Superfile in a floating terminal
 vim.keymap.set("n", "<C-o>", function()
-  spf_term:toggle()
+	spf_term:toggle()
 end, { desc = "Open Superfile in floating terminal" })
 
 vim.keymap.set("t", "<C-t>", "<C-\\><C-n>", { desc = "Escape terminal mode" })
