@@ -9,6 +9,12 @@ vim.keymap.set("n", "<leader>wq", ":wqa<CR>", { desc = "Save and quit" })
 vim.keymap.set("n", "<leader>qq", ":q!<CR>", { desc = "Force quit" })
 vim.keymap.set("n", "<leader>ww", ":w<CR>", { desc = "Save file" })
 vim.keymap.set("n", "gx", ":!open <c-r><c-a><CR>", { desc = "Open URL" })
+vim.keymap.set("n", "<leader>fn", function()
+	local filename = vim.fn.input("New file: ", "", "file")
+	if filename ~= "" then
+		vim.cmd("edit " .. vim.fn.fnameescape(filename))
+	end
+end, { desc = "Create new file" })
 
 ------------------ WINDOW MANAGEMENT ------------------
 
@@ -96,6 +102,10 @@ vim.keymap.set("n", "<leader>fp", function()
 	telescope_loader.load_common_extensions()
 	require("telescope").extensions.project.project()
 end, { desc = "Telescope Project Switcher" })
+
+vim.keymap.set("n", "<leader>fm", function()
+	require("telescope.builtin").lsp_document_symbols({ symbols = { "Function", "Method" } })
+end, { desc = "Find Functions/Methods in Document" })
 
 vim.keymap.set("n", "<C-e>", function()
 	telescope_loader.load_common_extensions()
@@ -226,40 +236,40 @@ end, { desc = "Harpoon file 4" })
 ------------------ DEBUGGING (DAP) ------------------
 
 -- Breakpoints
-vim.keymap.set("n", "<leader>dbt", require'dap'.toggle_breakpoint, { desc = "Toggle Breakpoint" })
+vim.keymap.set("n", "<leader>dbt", require("dap").toggle_breakpoint, { desc = "Toggle Breakpoint" })
 vim.keymap.set("n", "<leader>dbc", function()
-    require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+	require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 end, { desc = "Conditional Breakpoint" })
 vim.keymap.set("n", "<leader>dbl", function()
-    require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+	require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
 end, { desc = "Logpoint" })
-vim.keymap.set("n", "<leader>dbx", require'dap'.clear_breakpoints, { desc = "Clear Breakpoints" })
+vim.keymap.set("n", "<leader>dbx", require("dap").clear_breakpoints, { desc = "Clear Breakpoints" })
 vim.keymap.set("n", "<leader>dba", "<cmd>Telescope dap list_breakpoints<cr>", { desc = "List Breakpoints" })
 
 -- Debugging Controls
 -- MOVED to dap.lua: vim.keymap.set("n", "<leader>dc", require'dap'.continue, { desc = "Continue" })
-vim.keymap.set("n", "<leader>dn", require'dap'.step_over, { desc = "Next (Step Over)" }) -- Changed from `dso`
-vim.keymap.set("n", "<leader>di", require'dap'.step_into, { desc = "Step Into" }) -- Shortened
-vim.keymap.set("n", "<leader>do", require'dap'.step_out, { desc = "Step Out" }) -- Changed from `dso`
+vim.keymap.set("n", "<leader>dn", require("dap").step_over, { desc = "Next (Step Over)" }) -- Changed from `dso`
+vim.keymap.set("n", "<leader>di", require("dap").step_into, { desc = "Step Into" }) -- Shortened
+vim.keymap.set("n", "<leader>do", require("dap").step_out, { desc = "Step Out" }) -- Changed from `dso`
 
 -- Termination / Disconnect
 vim.keymap.set("n", "<leader>ddq", function()
-    require("dap").disconnect()
-    require("dapui").close()
+	require("dap").disconnect()
+	require("dapui").close()
 end, { desc = "Disconnect Debug" })
 vim.keymap.set("n", "<leader>ddt", function()
-    require("dap").terminate()
-    require("dapui").close()
+	require("dap").terminate()
+	require("dapui").close()
 end, { desc = "Terminate Debug" })
-vim.keymap.set("n", "<leader>ddr", require'dap'.repl.toggle, { desc = "Toggle REPL" })
-vim.keymap.set("n", "<leader>ddl", require'dap'.run_last, { desc = "Run Last Debug Session" })
+vim.keymap.set("n", "<leader>ddr", require("dap").repl.toggle, { desc = "Toggle REPL" })
+vim.keymap.set("n", "<leader>ddl", require("dap").run_last, { desc = "Run Last Debug Session" })
 
 -- Debug Views (DAP UI / Widgets)
 vim.keymap.set("n", "<leader>dvi", function()
-    require("dap.ui.widgets").hover()
+	require("dap.ui.widgets").hover()
 end, { desc = "Inspect Value" })
 vim.keymap.set("n", "<leader>dvs", function()
-    require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes)
+	require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes)
 end, { desc = "Show Scopes" })
 
 -- Telescope Integrations
@@ -268,12 +278,12 @@ vim.keymap.set("n", "<leader>dtc", "<cmd>Telescope dap commands<cr>", { desc = "
 
 -- Diagnostics
 vim.keymap.set("n", "<leader>dx", function()
-    vim.diagnostic.open_float(nil, { focusable = false })
+	vim.diagnostic.open_float(nil, { focusable = false })
 end, { desc = "Show Diagnostics in Floating Window" }) -- Changed from `<leader>e`
 
 -- Debug UI Control
 vim.keymap.set("n", "<leader>du", function()
-  require("dapui").toggle()
+	require("dapui").toggle()
 end, { desc = "Toggle Debug UI" }) -- Changed from `<leader>de`
 
 ------------------ BUFFERLINE ------------------
@@ -323,32 +333,38 @@ vim.keymap.set("n", "<leader>tv", function()
 end, { desc = "Vertical terminal" })
 
 -- Floating terminal that runs Superfile (spf)
-local spf_term = Terminal:new({
-	cmd = "spf " .. vim.fn.getcwd(), -- Starts Superfile in the current directory
-	direction = "float",
-	close_on_exit = true, -- Close terminal when Superfile exits
-	hidden = true,
-	float_opts = {
-		border = "curved",
-		width = math.floor(0.9 * vim.o.columns),
-		height = math.floor(0.9 * vim.o.lines),
-		winblend = 0, -- Set to 0 for no transparency
-		title = " Superfile ",
-		title_pos = "center",
-	},
-	highlights = {
-		NormalFloat = { link = "Normal" }, -- Use a solid background color
-		FloatBorder = { guifg = "#FDEEFC", guibg = "#1E1E2E" }, -- Pink border, dark background
-	},
-	on_open = function(term)
-		vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
-	end,
-})
+local function open_superfile()
+	local bufname = vim.api.nvim_buf_get_name(0) -- Get the full path of the current buffer
+	local dir = bufname ~= "" and vim.fn.fnamemodify(bufname, ":h") or vim.fn.getcwd()
+
+	-- Create a new terminal instance each time with the correct directory
+	local spf_term = Terminal:new({
+		cmd = "spf " .. dir, -- Launch Superfile in the correct directory
+		direction = "float",
+		close_on_exit = true,
+		hidden = true,
+		float_opts = {
+			border = "curved",
+			width = math.floor(0.9 * vim.o.columns),
+			height = math.floor(0.9 * vim.o.lines),
+			winblend = 0,
+			title = " Superfile ",
+			title_pos = "center",
+		},
+		highlights = {
+			NormalFloat = { link = "Normal" },
+			FloatBorder = { guifg = "#FDEEFC", guibg = "#1E1E2E" },
+		},
+		on_open = function(term)
+			vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+		end,
+	})
+
+	spf_term:toggle()
+end
 
 -- Keybinding to open Superfile in a floating terminal
-vim.keymap.set("n", "<C-o>", function()
-	spf_term:toggle()
-end, { desc = "Open Superfile in floating terminal" })
+vim.keymap.set("n", "<C-o>", open_superfile, { desc = "Open Superfile in floating terminal" })
 
 vim.keymap.set("t", "<C-t>", "<C-\\><C-n>", { desc = "Escape terminal mode" })
 

@@ -11,7 +11,7 @@ return {
 			preset = {
 				keys = {
 					{ icon = "󰍂 ", key = "l", desc = "login", section = "session" },
-					{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+					{ icon = " ", key = "f", desc = "find", action = ":lua Snacks.dashboard.pick('files')" },
 					{ icon = " ", key = "q", desc = "quit", action = ":qa" },
 				},
 				header = [[

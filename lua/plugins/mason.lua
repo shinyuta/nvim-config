@@ -21,6 +21,7 @@ return {
 					"rubocop", -- Ruby
 					"gofumpt", -- Go
 					"clang-format", -- C/C++
+          "cssls" -- css
 				},
 				auto_update = false,
 			})

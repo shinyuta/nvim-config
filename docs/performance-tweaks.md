@@ -82,7 +82,7 @@ Several plugins were removed completely for faster startup:
 ensure_installed = {
     "lua", "javascript", "typescript", "python",
     "json", "yaml", "html", "css", "bash",
-    "markdown", "markdown_inline", "rust", "go", "c"
+    "markdown", "markdown_inline", "rust", "go", "c", "css"
 }
 ```
 
