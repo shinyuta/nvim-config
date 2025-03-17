@@ -79,70 +79,53 @@ vim.keymap.set("n", "<leader>gf", function()
 	end
 end, { desc = "Smart Format File" })
 
------------------- TELESCOPE ------------------
+------------------ FZF-LUA ------------------
 
-local builtin = require("telescope.builtin")
-local telescope_loader = require("core.telescope-loader")
-local themes = require("telescope.themes")
+local fzf = require("fzf-lua")
 
--- 🗂️ Find files (Taller Ivy height for better preview)
+-- 🗂️ Find files (Optimized for previews)
 vim.keymap.set("n", "<C-p>", function()
-	builtin.find_files(require("telescope.themes").get_ivy({ layout_config = { height = 0.60 } }))
-end, { desc = "Find files" })
+	fzf.files({ winopts = { height = 0.60 } })
+end, { desc = "Find files (FZF-Lua)" })
 
--- 🔎 Live Grep (Taller Ivy height)
+-- 🔎 Live Grep (Show Only File Names)
 vim.keymap.set("n", "<leader>fg", function()
-	builtin.live_grep(require("telescope.themes").get_ivy({ layout_config = { height = 0.60 } }))
-end, { desc = "Live grep" })
+	fzf.live_grep({
+		winopts = { height = 0.60 },
+		fzf_opts = { ["--delimiter"] = ":", ["--with-nth"] = "1" }, -- Show only file names
+	})
+end, { desc = "Live grep (FZF-Lua)" })
 
--- 📌 Zoxide integration (Short Ivy height)
-vim.keymap.set("n", "<leader>fz", function()
-	telescope_loader.load_common_extensions()
-	require("telescope").extensions.zoxide.list(
-		require("telescope.themes").get_ivy({ layout_config = { height = 0.30 } })
-	)
-end, { desc = "Zoxide search" })
-
--- 📁 Project Switcher (Short Ivy height)
-vim.keymap.set("n", "<leader>fp", function()
-	telescope_loader.load_common_extensions()
-	require("telescope").extensions.project.project(
-		require("telescope.themes").get_ivy({ layout_config = { height = 0.30 } })
-	)
-end, { desc = "Telescope Project Switcher" })
-
--- 🔍 Find Functions/Methods in Current Document (Short Ivy height)
-vim.keymap.set("n", "<leader>fm", function()
-	builtin.lsp_document_symbols(
-		require("telescope.themes").get_ivy({ symbols = { "Function", "Method" }, layout_config = { height = 0.60 } })
-	)
-end, { desc = "Find Functions/Methods in Document" })
-
--- 🖥️ Open Buffers (Short Ivy height)
+-- 📂 Buffers (Open in Normal Mode & Delete with 'd')
 vim.keymap.set("n", "<C-b>", function()
-	builtin.buffers(require("telescope.themes").get_ivy({
+	fzf.buffers({
 		sort_mru = true,
 		sort_lastused = true,
-		initial_mode = "normal",
-		layout_config = { height = 0.30 },
-	}))
-end, { desc = "Find buffers (Telescope)" })
+		winopts = { height = 0.30 },
+		fzf_opts = { ["--delimiter"] = ":", ["--with-nth"] = "1" }, -- Show only file names
+		actions = {
+			["default"] = fzf.actions.buf_edit, -- Open buffer (default action)
+			["d"] = { fn = fzf.actions.buf_del, reload = true }, -- Delete buffer with 'd'
+		},
+	})
+end, { desc = "Find buffers (FZF-Lua)" })
 
--- 🔊 Noice Integration (Regular Ivy)
-vim.keymap.set("n", "<C-e>", function()
-	telescope_loader.load_common_extensions()
-	require("telescope").extensions.noice.noice(
-		require("telescope.themes").get_ivy({ layout_config = { height = 0.60 } })
-	)
-end, { desc = "Telescope Noice" })
+-- 📌 Zoxide (Jump to Directories)
+vim.keymap.set("n", "<leader>fz", function()
+	fzf.zoxide({ winopts = { height = 0.30 } })
+end, { desc = "Zoxide search (FZF-Lua)" })
 
--- 📋 Yank History (Regular Ivy)
+-- 🔍 Find Functions/Methods in Document
+vim.keymap.set("n", "<leader>fm", function()
+	fzf.lsp_document_symbols({ winopts = { height = 0.60 } })
+end, { desc = "Find Functions/Methods in Document (FZF-Lua)" })
+
+-- 📋 Yank History
 vim.keymap.set("n", "<leader>fy", function()
-	telescope_loader.load_common_extensions()
-	require("telescope").extensions.yank_history.yank_history(
-		require("telescope.themes").get_ivy({ layout_config = { height = 0.60 } })
-	)
-end, { desc = "Yank history (Telescope)" })
+	fzf.registers({ winopts = { height = 0.60 } })
+end, { desc = "Yank history (FZF-Lua)" })
+
+vim.keymap.set("n", "<C-e>", ":Noice fzf<CR>", { desc = "Noice FZF" })
 
 ------------------ SPECTRE ------------------
 

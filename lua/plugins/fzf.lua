@@ -10,7 +10,10 @@ return {
 				row = 0.35,
 				col = 0.50,
 				border = "rounded",
-				preview = { layout = "horizontal" },
+				preview = {
+					layout = "horizontal",
+					default = "bat",
+				},
 			},
 			keymap = {
 				fzf = {
