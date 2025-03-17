@@ -8,10 +8,10 @@ M.load_extension = function(name)
 end
 
 M.load_common_extensions = function()
-	M.load_extension("zoxide")
-	M.load_extension("project")
-	M.load_extension("noice")
-	M.load_extension("yank_history")
+	local extensions = { "zoxide", "project", "noice", "yank_history" }
+	for _, ext in ipairs(extensions) do
+		M.load_extension(ext)
+	end
 end
 
 return M

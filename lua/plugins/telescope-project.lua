@@ -6,9 +6,7 @@ return {
 		require("telescope").setup({
 			extensions = {
 				project = {
-					base_dirs = {
-						{ path = "~/Desktop/notes/work", max_depth = 2 }, -- max_depth allows finding School itself
-					},
+					base_dirs = {},
 					hidden_files = true,
 					order_by = "recent",
 					search_by = "title",

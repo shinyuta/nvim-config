@@ -1,4 +1,4 @@
------------------- SNACKS IMPORT -----------------
+------------------ KEYBIND FILE IMPORTS -----------------
 
 require("core.snacks-keybinds")
 require("core.obsidian-keybinds")
@@ -83,38 +83,65 @@ end, { desc = "Smart Format File" })
 
 local builtin = require("telescope.builtin")
 local telescope_loader = require("core.telescope-loader")
+local themes = require("telescope.themes")
 
-vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "Find files" })
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
-vim.keymap.set("n", "<leader>fs", function()
-	builtin.find_files({
-		cwd = "~/Desktop/wiki/",
-		find_command = { "fd", "--type", "f", "--ignore-file", ".ignore" },
-	})
-end, { desc = "Telescope Find School Files" })
+-- 🗂️ Find files (Taller Ivy height for better preview)
+vim.keymap.set("n", "<C-p>", function()
+	builtin.find_files(require("telescope.themes").get_ivy({ layout_config = { height = 0.60 } }))
+end, { desc = "Find files" })
 
+-- 🔎 Live Grep (Taller Ivy height)
+vim.keymap.set("n", "<leader>fg", function()
+	builtin.live_grep(require("telescope.themes").get_ivy({ layout_config = { height = 0.60 } }))
+end, { desc = "Live grep" })
+
+-- 📌 Zoxide integration (Short Ivy height)
 vim.keymap.set("n", "<leader>fz", function()
 	telescope_loader.load_common_extensions()
-	require("telescope").extensions.zoxide.list()
+	require("telescope").extensions.zoxide.list(
+		require("telescope.themes").get_ivy({ layout_config = { height = 0.30 } })
+	)
 end, { desc = "Zoxide search" })
 
+-- 📁 Project Switcher (Short Ivy height)
 vim.keymap.set("n", "<leader>fp", function()
 	telescope_loader.load_common_extensions()
-	require("telescope").extensions.project.project()
+	require("telescope").extensions.project.project(
+		require("telescope.themes").get_ivy({ layout_config = { height = 0.30 } })
+	)
 end, { desc = "Telescope Project Switcher" })
 
+-- 🔍 Find Functions/Methods in Current Document (Short Ivy height)
 vim.keymap.set("n", "<leader>fm", function()
-	require("telescope.builtin").lsp_document_symbols({ symbols = { "Function", "Method" } })
+	builtin.lsp_document_symbols(
+		require("telescope.themes").get_ivy({ symbols = { "Function", "Method" }, layout_config = { height = 0.60 } })
+	)
 end, { desc = "Find Functions/Methods in Document" })
 
+-- 🖥️ Open Buffers (Short Ivy height)
+vim.keymap.set("n", "<C-b>", function()
+	builtin.buffers(require("telescope.themes").get_ivy({
+		sort_mru = true,
+		sort_lastused = true,
+		initial_mode = "normal",
+		layout_config = { height = 0.30 },
+	}))
+end, { desc = "Find buffers (Telescope)" })
+
+-- 🔊 Noice Integration (Regular Ivy)
 vim.keymap.set("n", "<C-e>", function()
 	telescope_loader.load_common_extensions()
-	require("telescope").extensions.noice.noice()
+	require("telescope").extensions.noice.noice(
+		require("telescope.themes").get_ivy({ layout_config = { height = 0.60 } })
+	)
 end, { desc = "Telescope Noice" })
 
+-- 📋 Yank History (Regular Ivy)
 vim.keymap.set("n", "<leader>fy", function()
 	telescope_loader.load_common_extensions()
-	require("telescope").extensions.yank_history.yank_history()
+	require("telescope").extensions.yank_history.yank_history(
+		require("telescope.themes").get_ivy({ layout_config = { height = 0.60 } })
+	)
 end, { desc = "Yank history (Telescope)" })
 
 ------------------ SPECTRE ------------------
@@ -285,18 +312,6 @@ end, { desc = "Show Diagnostics in Floating Window" }) -- Changed from `<leader>
 vim.keymap.set("n", "<leader>du", function()
 	require("dapui").toggle()
 end, { desc = "Toggle Debug UI" }) -- Changed from `<leader>de`
-
------------------- BUFFERLINE ------------------
-
-vim.keymap.set("n", "<leader>bn", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bm", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<cr>", { desc = "Pin buffer" })
-vim.keymap.set("n", "<leader>bx", function()
-	Snacks.bufdelete.other()
-end, { desc = "Delete other buffers" })
-vim.keymap.set("n", "<leader>bd", function()
-	Snacks.bufdelete()
-end, { desc = "Delete Current Buffer" })
 
 ------------------ TESTING ------------------
 

@@ -6,8 +6,10 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local previewers = require("telescope.previewers")
+			local actions = require("telescope.actions")
+			local themes = require("telescope.themes")
 
-			-- Custom previewer to skip large files and binaries
+			-- 🛠️ Custom Previewer (Skips Large Files)
 			local new_maker = function(filepath, bufnr, opts)
 				opts = opts or {}
 
@@ -26,6 +28,19 @@ return {
 
 			require("telescope").setup({
 				defaults = {
+					layout_strategy = "bottom_pane", -- Minimal layout by default
+					layout_config = {
+						height = 0.70, -- Default height (overridden by keymaps)
+					},
+					sorting_strategy = "ascending",
+					prompt_prefix = "🔍 ", -- Cleaner prompt
+					selection_caret = "❯ ", -- Minimal selection indicator
+					mappings = {
+						n = {
+							["d"] = actions.delete_buffer, -- Delete buffer with "d"
+							["q"] = actions.close, -- Quit with "q"
+						},
+					},
 					buffer_previewer_maker = new_maker,
 					file_ignore_patterns = {
 						"node_modules/.*",
@@ -41,13 +56,24 @@ return {
 				},
 				extensions = {
 					["ui-select"] = {
-						require("telescope.themes").get_dropdown({}),
+						themes.get_ivy({ layout_config = { height = 0.75 } }),
 					},
 				},
 			})
+
 			require("telescope").load_extension("ui-select")
 
-			-- Optional aesthetic tweaks (kept from your config)
+			-- 🔄 **Fix for `<C-b>` not working after `fz` or `fp`**
+			vim.api.nvim_create_autocmd("WinLeave", {
+				pattern = "*",
+				callback = function()
+					if vim.bo.filetype == "TelescopePrompt" then
+						vim.cmd("stopinsert") -- Prevents telescope from blocking `<C-b>`
+					end
+				end,
+			})
+
+			-- 🌈 Custom Telescope Highlights
 			local TelescopePrompt = {
 				TelescopePromptTitle = { fg = "#FD77DD", bg = "none" },
 				TelescopePreviewTitle = { fg = "#FD77DD", bg = "none" },
@@ -63,6 +89,5 @@ return {
 	},
 	{
 		"nvim-telescope/telescope-ui-select.nvim",
-		-- This is covered in the main telescope config, but can be left here if you want explicit control
 	},
 }
