@@ -36,3 +36,9 @@ vim.api.nvim_create_autocmd("TermOpen", {
 		vim.b.miniindentscope_disable = true
 	end,
 })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    require("snacks.dim").enable()
+  end,
+})

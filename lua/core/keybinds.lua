@@ -131,11 +131,11 @@ vim.keymap.set("n", "<C-e>", ":Noice fzf<CR>", { desc = "Noice FZF" })
 
 local spectre = require("spectre")
 
-vim.keymap.set("n", "<leader>sf", function()
+vim.keymap.set("n", "<leader>sF", function()
 	spectre.open_file_search({ select_word = true })
 end, { desc = "Search & Replace in Current File" })
 
-vim.keymap.set("n", "<leader>sb", function()
+vim.keymap.set("n", "<leader>sB", function()
 	spectre.open({ is_insert_mode = false, search_text = "", is_file = false })
 end, { desc = "Search & Replace in Open Buffers" })
 

@@ -4,6 +4,11 @@ return {
 	event = "VeryLazy",
 	config = function()
 		require("fzf-lua").setup({
+			defaults = {
+				git_icons = false,
+				file_icons = true,
+				color_icons = false,
+			},
 			winopts = {
 				height = 0.85,
 				width = 0.80,
