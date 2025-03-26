@@ -25,6 +25,12 @@ return {
 						"yaml",
 						"markdown",
 					},
+					extra_args = {
+						"--print-width",
+						"80",
+						"--prose-wrap",
+						"always",
+					},
 				}),
 
 				-- Ruby
