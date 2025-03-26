@@ -25,7 +25,7 @@ return {
 						color5 = "#FAF9F6", -- Main text color
 						color6 = "#6a6a6a", -- Comment color
 						color7 = "#A9DD48", -- Minor
-						color8 = "#FAF9F6", -- Extra
+						color8 = "#54C1DB", -- Extra
 					},
 				},
 				accent = {

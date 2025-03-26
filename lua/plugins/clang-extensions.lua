@@ -4,7 +4,7 @@ return {
 	config = function()
 		require("clangd_extensions").setup({
 			server = {
-				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				capabilities = require("blink.cmp").get_lsp_capabilities(),
 			},
 		})
 	end,

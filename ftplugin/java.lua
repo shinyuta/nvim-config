@@ -133,7 +133,7 @@ local config = {
 		},
 	},
 	-- Needed for auto-completion with method signatures and placeholders
-	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+  local capabilities = require("blink.cmp").get_lsp_capabilities(),
 	flags = {
 		allow_incremental_sync = true,
 	},

@@ -1,7 +1,6 @@
 ------------------ KEYBIND FILE IMPORTS -----------------
 
 require("core.snacks-keybinds")
-require("core.obsidian-keybinds")
 
 ------------------ FILE OPERATIONS ------------------
 
@@ -376,4 +375,3 @@ vim.keymap.set("x", "s", require("substitute").visual, { desc = "Substitute visu
 ------------------ MISC ------------------
 
 vim.keymap.set("n", "<leader>td", "<cmd>Dooing<cr>", { desc = "Open Dooing" })
-vim.keymap.set("n", "<leader>st", "<cmd>Speedtyper<CR>", { desc = "Toggle Speedtyper" })
