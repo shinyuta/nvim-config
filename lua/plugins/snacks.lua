@@ -57,19 +57,14 @@ return {
 
 		indent = {
 			indent = {
-				enabled = true,
-				priority = 1,
-				char = "|",
-				only_scope = true,
-				only_current = true,
-				hl = "SnacksIndent",
+				enabled = false, -- Turn off standard indent lines
 			},
 			scope = {
-				enabled = true,
+				enabled = true, -- Turn on scope lines
 				priority = 200,
 				char = "|",
 				underline = false,
-				only_current = true,
+				only_current = true, -- Only show scope lines for the scope under cursor
 				hl = "SnacksIndentScope",
 			},
 		},
