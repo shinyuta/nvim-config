@@ -20,6 +20,17 @@
 | `<leader>lGH` | Lazygit file history   |
 | `<leader>lGL` | Lazygit repository log |
 
+### Scope Integration
+
+| Keybind      | Action                           |
+| ------------ | -------------------------------- |
+| `<leader>si` | Select inner current scope       |
+| `<leader>sa` | Select around current scope      |
+| `<leader>st` | Jump to top edge of scope        |
+| `<leader>sb` | Jump to bottom edge of scope     |
+| `<leader>sn` | Jump to next same-level function |
+| `<leader>sp` | Jump to prev same-level function |
+
 ---
 
 ## 🗒️ Obsidian Keybinds
@@ -40,12 +51,13 @@
 
 ## 📂 File Operations
 
-| Keybind      | Action        |
-| ------------ | ------------- |
-| `<leader>wq` | Save and quit |
-| `<leader>qq` | Force quit    |
-| `<leader>ww` | Save file     |
-| `gx`         | Open URL      |
+| Keybind      | Action          |
+| ------------ | --------------- |
+| `<leader>wq` | Save and quit   |
+| `<leader>qq` | Force quit      |
+| `<leader>ww` | Save file       |
+| `gx`         | Open URL        |
+| `<leader>fn` | Create new file |
 
 ---
 
@@ -65,14 +77,14 @@
 
 ## 📋 Clipboard Operations
 
-| Keybind     | Action                          |
-| ----------- | ------------------------------- |
-| `<leader>y` | Yank to system clipboard        |
-| `<leader>Y` | Yank line to system clipboard   |
-| `<leader>d` | Delete to system clipboard      |
-| `<leader>D` | Delete line to system clipboard |
-| `<leader>p` | Paste from system clipboard     |
-| `<leader>P` | Paste above from clipboard      |
+| Keybind      | Action                          |
+| ------------ | ------------------------------- |
+| `<leader>y`  | Yank to system clipboard        |
+| `<leader>Y`  | Yank line to system clipboard   |
+| `<leader>yd` | Delete to system clipboard      |
+| `<leader>yD` | Delete line to system clipboard |
+| `<leader>p`  | Paste from system clipboard     |
+| `<leader>P`  | Paste above from clipboard      |
 
 ---
 
@@ -108,8 +120,8 @@
 
 | Keybind             | Action                           |
 | ------------------- | -------------------------------- |
-| `<leader>sf`        | Search & Replace in Current File |
-| `<leader>sb`        | Search & Replace in Open Buffers |
+| `<leader>sF`        | Search & Replace in Current File |
+| `<leader>sB`        | Search & Replace in Open Buffers |
 | `:CleanSpectreJunk` | Cleanup Spectre backup files     |
 
 ---
@@ -143,26 +155,26 @@
 
 ## 🐞 Debugging (DAP)
 
-| Keybind      | Action                 |
-| ------------ | ---------------------- |
-| `<leader>bb` | Toggle breakpoint      |
-| `<leader>bc` | Conditional breakpoint |
-| `<leader>bl` | Logpoint               |
-| `<leader>br` | Clear breakpoints      |
-| `<leader>ba` | List breakpoints       |
-| `<leader>dc` | Continue               |
-| `<leader>dj` | Step over              |
-| `<leader>dk` | Step into              |
-| `<leader>do` | Step out               |
-| `<leader>dd` | Disconnect Debug       |
-| `<leader>dt` | Terminate Debug        |
-| `<leader>dr` | Toggle REPL            |
-| `<leader>dl` | Run Last               |
-| `<leader>di` | Inspect Value          |
-| `<leader>d?` | Show Scopes            |
-| `<leader>df` | Telescope Frames       |
-| `<leader>dh` | Telescope Commands     |
-| `<leader>e`  | Show Diagnostics Float |
+| Keybind       | Action                 |
+| ------------- | ---------------------- |
+| `<leader>dbt` | Toggle breakpoint      |
+| `<leader>dbc` | Conditional breakpoint |
+| `<leader>dbl` | Logpoint               |
+| `<leader>dbx` | Clear breakpoints      |
+| `<leader>dba` | List breakpoints       |
+| `<leader>dn`  | Step over              |
+| `<leader>di`  | Step into              |
+| `<leader>do`  | Step out               |
+| `<leader>ddq` | Disconnect Debug       |
+| `<leader>ddt` | Terminate Debug        |
+| `<leader>ddr` | Toggle REPL            |
+| `<leader>ddl` | Run Last               |
+| `<leader>dvi` | Inspect Value          |
+| `<leader>dvs` | Show Scopes            |
+| `<leader>dtf` | Telescope Frames       |
+| `<leader>dtc` | Telescope Commands     |
+| `<leader>dx`  | Show Diagnostics Float |
+| `<leader>du`  | Toggle Debug UI        |
 
 ---
 
@@ -195,6 +207,7 @@
 | `<leader>tt` | Floating terminal    |
 | `<leader>th` | Horizontal terminal  |
 | `<leader>tv` | Vertical terminal    |
+| `<C-o>`      | Open Superfile       |
 | `<C-t>`      | Escape terminal mode |
 
 ---
