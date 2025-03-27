@@ -100,14 +100,7 @@ return {
 			-------------------------------------------------------------------------
 			-- Provide completions for '/', '?' but not for ':'
 			cmdline = {
-				enabled = true,
-				sources = function()
-					local type = vim.fn.getcmdtype()
-					if type == "/" or type == "?" then
-						return { "buffer" } -- basic buffer completions for searching
-					end
-					return {}
-				end,
+				enabled = false,
 			},
 
 			-------------------------------------------------------------------------
@@ -115,7 +108,7 @@ return {
 			-------------------------------------------------------------------------
 			-- Terminal completions are only fully supported on Neovim 0.11+ (nightly).
 			-- We'll disable them for minimal config.
-			term = { enabled = false },
+			term = { enabled = true },
 		},
 		-- Merges default sources with ours
 		opts_extend = { "sources.default" },

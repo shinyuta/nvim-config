@@ -63,7 +63,7 @@ vim.keymap.set("n", "<leader>gf", function()
 	}
 	local none_ls_clients = vim.tbl_filter(function(client)
 		return client.name == "null-ls"
-	end, vim.lsp.get_active_clients({ bufnr = bufnr }))
+	end, vim.lsp.get_clients({ bufnr = bufnr }))
 	if vim.tbl_contains(prefer_none_ls, ft) and #none_ls_clients > 0 then
 		vim.notify("⚡ Formatting " .. ft .. " using none-ls", "info", { title = "Formatter" })
 		vim.lsp.buf.format({
