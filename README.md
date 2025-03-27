@@ -19,6 +19,7 @@ Welcome to **Jinx.nvim**, a personal Neovim configuration crafted for **speed, c
 ├── colors/                 # Custom colorschemes
 ├── docs/                    # Documentation and performance notes
 ├── ftplugin/               # Filetype-specific tweaks
+├── retired/                # Retired plugin/lua files
 ```
 
 ---
@@ -60,8 +61,6 @@ export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 ## 🌈 Jinx Colorscheme
 
-This config includes a custom `jinx` colorscheme built on top of `rose-pine`, styled to match the Jinx aesthetic:
-
 | Element    | Color         |
 | ---------- | ------------- |
 | Text       | Pink          |
@@ -94,14 +93,6 @@ This configuration features an extensive set of **custom keybinds**, covering fi
 
 For a complete reference, see:
 ➡️ [docs/keybinds.md](./docs/keybinds.md)
-
----
-
-Here's the updated **Plugin Overview** section with your requested changes:
-
-- ✅ Removed `colorscheme.cloning`, `white-green.cloning`, and the ambiguous `nvim`
-- ✅ Added proper link/description for `palette.nvim`
-- ✅ Updated description for `snacks.nvim` to a more general QOL summary
 
 ---
 
@@ -172,28 +163,3 @@ Here's the updated **Plugin Overview** section with your requested changes:
 | `:LspInfo`      | Show active LSP servers   |
 | `:checkhealth`  | Diagnose general issues   |
 | `:verbose map`  | Show mapped keys          |
-
----
-
-## 📓 Obsidian.nvim Workflow
-
-This configuration also supports a **full Obsidian.nvim workflow**, allowing you to manage:
-
-- Personal notes
-- School notes
-- Essays and projects
-
-The default wiki directory is:
-
-```text
-~/Desktop/wiki/
-```
-
-For a complete breakdown of the Obsidian workflow, see:
-➡️ [docs/obsidian.md](docs/obsidian.md)
-
----
-
-## 🎉 Final Tip
-
-This configuration is designed to be **future-proof**. Adding new plugins, adapting to new workflows, or adjusting settings should be quick and painless. Embrace the chaos and enjoy your **Jinx-powered Neovim!** 💥
