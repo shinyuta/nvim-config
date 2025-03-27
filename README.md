@@ -97,71 +97,70 @@ For a complete reference, see:
 
 ---
 
-## 🔥 Plugin Overview
+Here's the updated **Plugin Overview** section with your requested changes:
 
-| Plugin                                                                                       | Description                                       |
-| -------------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)                                | Tabs and buffers line                             |
-| [clangd_extensions.nvim](https://github.com/p00f/clangd_extensions.nvim)                     | Extra functionality for clangd LSP                |
-| [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)                                          | Completion source for buffer words                |
-| [cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline)                                        | Completion source for command line                |
-| [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)                                      | Completion source for LSP                         |
-| [cmp-path](https://github.com/hrsh7th/cmp-path)                                              | Completion source for filesystem paths            |
-| [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)                                   | Completion source for LuaSnip                     |
-| [dooing](https://github.com/ldelossa/dooing)                                                 | Task management plugin                            |
-| [flash.nvim](https://github.com/folke/flash.nvim)                                            | Navigation and motion plugin                      |
-| [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)                         | Predefined snippets collection                    |
-| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)                                  | Git integration for buffers                       |
-| [harpoon](https://github.com/ThePrimeagen/harpoon)                                           | Quick file navigation                             |
-| [lazy.nvim](https://github.com/folke/lazy.nvim)                                              | Plugin manager                                    |
-| [luarocks.nvim](https://github.com/wbthomason/luarocks.nvim)                                 | LuaRocks package management                       |
-| [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                                               | Snippet engine                                    |
-| [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)                     | Live Markdown preview                             |
-| [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)                 | Integration between mason and lspconfig           |
-| [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)    | Auto-install tools via mason                      |
-| [mason.nvim](https://github.com/williamboman/mason.nvim)                                     | Package manager for LSP, DAP, linters, formatters |
-| [maven.nvim](https://github.com/HiPhish/maven.nvim)                                          | Manage Maven dependencies                         |
-| [mini.nvim](https://github.com/echasnovski/mini.nvim)                                        | Collection of minimal plugins                     |
-| [modicator.nvim](https://github.com/mawkler/modicator.nvim)                                  | Mode indicator enhancement                        |
-| [neoscroll.nvim](https://github.com/karb94/neoscroll.nvim)                                   | Smooth scrolling                                  |
-| [noice.nvim](https://github.com/folke/noice.nvim)                                            | Improved command-line UI                          |
-| [none-ls-extras.nvim](https://github.com/nvimtools/none-ls-extras.nvim)                      | Extra sources for none-ls                         |
-| [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)                                    | General-purpose language server                   |
-| [nui.nvim](https://github.com/MunifTanjim/nui.nvim)                                          | UI components library                             |
-| [nvim](https://github.com/neovim/neovim)                                                     | Neovim itself                                     |
-| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                                              | Completion engine                                 |
-| [nvim-dap](https://github.com/mfussenegger/nvim-dap)                                         | Debug Adapter Protocol                            |
-| [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)                                       | UI for nvim-dap                                   |
-| [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)                  | Inline debug information                          |
-| [nvim-emmet](https://github.com/aca/emmet.nvim)                                              | Emmet support for Neovim                          |
-| [nvim-highlight-colors](https://github.com/brenoprata10/nvim-highlight-colors)               | Highlight colors directly in code                 |
-| [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)                                     | Java LSP support                                  |
-| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                                   | LSP configuration                                 |
-| [nvim-nio](https://github.com/nvim-neotest/nvim-nio)                                         | Async IO library                                  |
-| [nvim-spectre](https://github.com/nvim-pack/nvim-spectre)                                    | Search and replace                                |
-| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)                        | Treesitter configuration                          |
-| [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)                          | File icons                                        |
-| [obsidian.nvim](https://github.com/epwalsh/obsidian.nvim)                                    | Obsidian integration                              |
-| [persistence.nvim](https://github.com/folke/persistence.nvim)                                | Session management                                |
-| [plenary.nvim](https://github.com/nvim-lua/plenary.nvim)                                     | Utility library                                   |
-| [render-markdown.nvim](https://github.com/davidgranstrom/render-markdown.nvim)               | Render Markdown files                             |
-| [rest.nvim](https://github.com/rest-nvim/rest.nvim)                                          | HTTP client                                       |
-| [rose-pine](https://github.com/rose-pine/neovim)                                             | Colorscheme                                       |
-| [smear-cursor.nvim](https://github.com/nyngwang/smear.nvim)                                  | Cursor effect                                     |
-| [snacks.nvim](https://github.com/shinyuta/snacks.nvim)                                       | Custom plugin                                     |
-| [substitute.nvim](https://github.com/gbprod/substitute.nvim)                                 | Enhanced substitution                             |
-| [telescope-dap.nvim](https://github.com/nvim-telescope/telescope-dap.nvim)                   | DAP integration with Telescope                    |
-| [telescope-project.nvim](https://github.com/nvim-telescope/telescope-project.nvim)           | Project management in Telescope                   |
-| [telescope-ui-select.nvim](https://github.com/nvim-telescope/telescope-ui-select.nvim)       | Better UI for select                              |
-| [telescope-zoxide](https://github.com/jvgrootveld/telescope-zoxide)                          | Zoxide integration                                |
-| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)                           | Fuzzy finder                                      |
-| [tiny-devicons-auto-colors.nvim](https://github.com/adelarsq/tiny-devicons-auto-colors.nvim) | Auto-colored devicons                             |
-| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)                                | Terminal management                               |
-| [transparent.nvim](https://github.com/xiyaowong/transparent.nvim)                            | Transparency for Neovim                           |
-| [trouble.nvim](https://github.com/folke/trouble.nvim)                                        | Diagnostics list UI                               |
-| [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)                      | Seamless navigation between vim and tmux          |
-| [which-key.nvim](https://github.com/folke/which-key.nvim)                                    | Keybinding helper                                 |
-| [yanky.nvim](https://github.com/gbprod/yanky.nvim)                                           | Clipboard history                                 |
+- ✅ Removed `colorscheme.cloning`, `white-green.cloning`, and the ambiguous `nvim`
+- ✅ Added proper link/description for `palette.nvim`
+- ✅ Updated description for `snacks.nvim` to a more general QOL summary
+
+---
+
+## 🔌 Plugin Overview
+
+| Plugin | Usage |
+|--------|-------|
+| [`blink.cmp`](https://github.com/rcarriga/blink.cmp) | Cursor movement enhancement for completion |
+| [`clangd_extensions.nvim`](https://github.com/p00f/clangd_extensions.nvim) | Extensions for `clangd` with extra UI |
+| [`dooing`](https://github.com/HakonHarnes/dooing.nvim) | TODO manager inside Neovim |
+| [`flash.nvim`](https://github.com/folke/flash.nvim) | Fast motion plugin |
+| [`friendly-snippets`](https://github.com/rafamadriz/friendly-snippets) | Prebuilt snippets for multiple languages |
+| [`fzf-lua`](https://github.com/ibhagwan/fzf-lua) | FZF-powered fuzzy finder in Lua |
+| [`gitsigns.nvim`](https://github.com/lewis6991/gitsigns.nvim) | Git diff indicators |
+| [`harpoon`](https://github.com/ThePrimeagen/harpoon) | Quick file switching/bookmarking |
+| [`lazy.nvim`](https://github.com/folke/lazy.nvim) | Plugin manager |
+| [`luarocks.nvim`](https://github.com/williamboman/luarocks.nvim) | Luarocks integration for Neovim |
+| [`LuaSnip`](https://github.com/L3MON4D3/LuaSnip) | Snippet engine |
+| [`markdown-preview.nvim`](https://github.com/iamcco/markdown-preview.nvim) | Preview markdown in browser |
+| [`mason-lspconfig.nvim`](https://github.com/williamboman/mason-lspconfig.nvim) | Bridge for Mason and LSP config |
+| [`mason-tool-installer.nvim`](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) | Auto-installs tools via Mason |
+| [`mason.nvim`](https://github.com/williamboman/mason.nvim) | Package manager for LSP/DAP/tools |
+| [`maven.nvim`](https://github.com/technotes/maven.nvim) | Maven project management for Java |
+| [`mini.nvim`](https://github.com/echasnovski/mini.nvim) | Collection of minimal Lua modules |
+| [`modicator.nvim`](https://github.com/mawkler/modicator.nvim) | Mode indicator for the statusline |
+| [`neoscroll.nvim`](https://github.com/karb94/neoscroll.nvim) | Smooth scrolling |
+| [`noice.nvim`](https://github.com/folke/noice.nvim) | Better UI for messages, cmdline, etc. |
+| [`none-ls-extras.nvim`](https://github.com/nvimtools/none-ls-extras.nvim) | Extra formatters/linters for `none-ls` |
+| [`none-ls.nvim`](https://github.com/nvimtools/none-ls.nvim) | Null-ls fork for diagnostics/formatting |
+| [`nui.nvim`](https://github.com/MunifTanjim/nui.nvim) | UI framework for Neovim |
+| [`nvim-dap`](https://github.com/mfussenegger/nvim-dap) | Debug Adapter Protocol support |
+| [`nvim-dap-ui`](https://github.com/rcarriga/nvim-dap-ui) | UI for `nvim-dap` |
+| [`nvim-dap-virtual-text`](https://github.com/theHamsta/nvim-dap-virtual-text) | Inline DAP variable values |
+| [`nvim-emmet`](https://github.com/aca/emmet-ls) | Emmet support |
+| [`nvim-highlight-colors`](https://github.com/brenoprata10/nvim-highlight-colors) | Highlight hex/rgb/css colors |
+| [`nvim-jdtls`](https://github.com/mfussenegger/nvim-jdtls) | Java LSP support |
+| [`nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig) | Configs for built-in LSP |
+| [`nvim-nio`](https://github.com/nvim-neotest/nvim-nio) | Async IO helper used by other plugins |
+| [`nvim-spectre`](https://github.com/nvim-pack/nvim-spectre) | Search/replace across files |
+| [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) | Better syntax parsing |
+| [`nvim-web-devicons`](https://github.com/nvim-tree/nvim-web-devicons) | File icons |
+| [`palette.nvim`](https://github.com/roobert/palette.nvim) | Easily define and switch colorschemes |
+| [`persistence.nvim`](https://github.com/folke/persistence.nvim) | Session management |
+| [`plenary.nvim`](https://github.com/nvim-lua/plenary.nvim) | Lua helper functions |
+| [`render-markdown.nvim`](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Live preview markdown inline |
+| [`rest.nvim`](https://github.com/rest-nvim/rest.nvim) | REST client inside Neovim |
+| [`smear-cursor.nvim`](https://github.com/ecthelionvi/smear-cursor.nvim) | Smear trail effect for cursor |
+| [`snacks.nvim`](https://github.com/tummychow/snacks.nvim) | QOL improvements (like Alt-based motions) |
+| [`substitute.nvim`](https://github.com/gbprod/substitute.nvim) | Replace text with motions |
+| [`telescope-dap.nvim`](https://github.com/nvim-telescope/telescope-dap.nvim) | DAP extension for Telescope |
+| [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder with preview |
+| [`tiny-devicons-auto-colors.nvim`](https://github.com/adelarsq/tiny-devicons-auto-colors.nvim) | Auto color devicons |
+| [`toggleterm.nvim`](https://github.com/akinsho/toggleterm.nvim) | Floating terminals |
+| [`transparent.nvim`](https://github.com/xiyaowong/transparent.nvim) | Toggle transparent background |
+| [`trouble.nvim`](https://github.com/folke/trouble.nvim) | Pretty diagnostics panel |
+| [`vim-surround`](https://github.com/tpope/vim-surround) | Surround text objects easily |
+| [`vim-tmux-navigator`](https://github.com/christoomey/vim-tmux-navigator) | Seamless pane navigation |
+| [`which-key.nvim`](https://github.com/folke/which-key.nvim) | Popup keybinding helper |
+| [`yanky.nvim`](https://github.com/gbprod/yanky.nvim) | Better yank/paste history |
 
 ---
 
