@@ -23,7 +23,7 @@ return {
 						color3 = "#FD77DD", -- Pink (for brackets, etc.)
 						color4 = "#54C1DB", -- Blue (for parentheses, operators)
 						color5 = "#FAF9F6", -- Main text color
-						color6 = "#6a6a6a", -- Comment color
+						color6 = "#5c6984", -- Comment color
 						color7 = "#A9DD48", -- Minor
 						color8 = "#54C1DB", -- Extra
 					},
@@ -52,6 +52,6 @@ return {
 		})
 
 		vim.cmd([[colorscheme palette]])
-		vim.cmd("highlight LineNr guifg=#FFFFFF") -- added to change line numbers to white (color3)
+		vim.cmd("highlight LineNr guifg=#565656") -- added to change line numbers to white (color3)
 	end,
 }

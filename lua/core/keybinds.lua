@@ -1,3 +1,19 @@
+-- Disable arrow keys in normal, insert, and visual modes
+vim.keymap.set({ "n", "i", "v" }, "<Up>", "<NOP>")
+vim.keymap.set({ "n", "i", "v" }, "<Down>", "<NOP>")
+vim.keymap.set({ "n", "i", "v" }, "<Left>", "<NOP>")
+vim.keymap.set({ "n", "i", "v" }, "<Right>", "<NOP>")
+
+------------------ VIM MOTIONS -----------------
+
+vim.keymap.set("i", "jj", "<Esc>", { noremap = false, desc = "Exit insert mode with jj" })
+
+-- Jump to beginning of line
+vim.keymap.set("n", "B", "^", { desc = "Jump to beginning of line" })
+
+-- Jump to end of line
+vim.keymap.set("n", "E", "$", { desc = "Jump to end of line" })
+
 ------------------ KEYBIND FILE IMPORTS -----------------
 
 require("core.snacks-keybinds")
@@ -375,3 +391,15 @@ vim.keymap.set("x", "s", require("substitute").visual, { desc = "Substitute visu
 ------------------ MISC ------------------
 
 vim.keymap.set("n", "<leader>td", "<cmd>Dooing<cr>", { desc = "Open Dooing" })
+
+------------------ NEOSCROLL ------------------
+
+local neoscroll = require("neoscroll")
+
+vim.keymap.set("n", "<C-j>", function()
+	neoscroll.ctrl_d({ duration = 250, easing = "sine" })
+end, { desc = "Smooth scroll down" })
+
+vim.keymap.set("n", "<C-k>", function()
+	neoscroll.ctrl_u({ duration = 250, easing = "sine" })
+end, { desc = "Smooth scroll up" })

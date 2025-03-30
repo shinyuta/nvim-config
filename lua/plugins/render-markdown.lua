@@ -38,24 +38,6 @@ return {
 				checked = { icon = "✔ " },
 				custom = { todo = { rendered = "◯ " } },
 			},
-			code = {
-				width = "block",
-				left_margin = 0.5,
-				left_pad = 0.2,
-				right_pad = 0.2,
-			},
-			heading = {
-				sign = false,
-				position = "inline",
-				width = "block",
-				left_margin = 0.5,
-				left_pad = 0.2,
-				right_pad = 0.2,
-			},
-			paragraph = {
-				left_margin = 0.5,
-				min_width = 30,
-			},
 		},
 	},
 }
