@@ -16,14 +16,14 @@ _Arcane_. This setup works seamlessly on both **macOS** and **Linux**.
 
 ```text
 ~/.config/nvim/
-├── init.lua              # Main entrypoint
-├── lua/
-│   ├── core/              # Core settings (options, keybinds, autocmds, etc.)
-│   ├── plugins/           # Individual plugin configurations
-├── colors/                 # Custom colorschemes
-├── docs/                    # Documentation and performance notes
-├── ftplugin/               # Filetype-specific tweaks
-├── retired/                # Retired plugin/lua files
+├── init.lua            # Main entrypoint
+├── lua/                
+│   ├── core/           # Core settings (options, keybinds, autocmds, etc.)
+│   ├── plugins/        # Individual plugin configurations
+├── docs/               # Documentation and performance notes
+├── ftplugin/           # Filetype-specific tweaks
+├── retired/            # Retired plugin/lua files
+├── lsp/                # 0.11 lsp configurations
 ```
 
 ---
