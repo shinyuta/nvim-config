@@ -57,8 +57,7 @@ export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 3. Run the following inside Neovim to install required tools:
 
 ```vim
-:MasonInstall lua_ls pyright tsserver html cssls jsonls yamlls gopls rust_analyzer solargraph
-:MasonInstall stylua black isort prettier rubocop gofumpt clang-format
+:MasonToolsUpdate
 ```
 
 ---
@@ -105,7 +104,6 @@ For a complete reference, see: ➡️ [docs/keybinds.md](./docs/keybinds.md)
 | Plugin                                                                                         | Usage                                      |
 | ---------------------------------------------------------------------------------------------- | ------------------------------------------ |
 | [`blink.cmp`](https://github.com/rcarriga/blink.cmp)                                           | Cursor movement enhancement for completion |
-| [`clangd_extensions.nvim`](https://github.com/p00f/clangd_extensions.nvim)                     | Extensions for `clangd` with extra UI      |
 | [`dooing`](https://github.com/HakonHarnes/dooing.nvim)                                         | TODO manager inside Neovim                 |
 | [`flash.nvim`](https://github.com/folke/flash.nvim)                                            | Fast motion plugin                         |
 | [`friendly-snippets`](https://github.com/rafamadriz/friendly-snippets)                         | Prebuilt snippets for multiple languages   |
@@ -133,7 +131,6 @@ For a complete reference, see: ➡️ [docs/keybinds.md](./docs/keybinds.md)
 | [`nvim-emmet`](https://github.com/aca/emmet-ls)                                                | Emmet support                              |
 | [`nvim-highlight-colors`](https://github.com/brenoprata10/nvim-highlight-colors)               | Highlight hex/rgb/css colors               |
 | [`nvim-jdtls`](https://github.com/mfussenegger/nvim-jdtls)                                     | Java LSP support                           |
-| [`nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig)                                   | Configs for built-in LSP                   |
 | [`nvim-nio`](https://github.com/nvim-neotest/nvim-nio)                                         | Async IO helper used by other plugins      |
 | [`nvim-spectre`](https://github.com/nvim-pack/nvim-spectre)                                    | Search/replace across files                |
 | [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter)                        | Better syntax parsing                      |
