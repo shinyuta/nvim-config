@@ -37,15 +37,11 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-	pattern = "*",
-	callback = function()
-		-- Override cmdline highlight for Noice:
-		vim.api.nvim_set_hl(0, "NoiceCmdline", { fg = "#FAF9F6" })
-		-- Override the Comment group if needed:
-		vim.api.nvim_set_hl(0, "Comment", { fg = "#6a6a6a" })
-		-- You can also override thecmd highlight for keywords that are causing the issue,
-		-- e.g., if quotes are using a Treesitter group like "@string" or "@text.literal":
-		vim.api.nvim_set_hl(0, "@string", { fg = "#FAF9F6" })
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(ev)
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		if client:supports_method("textDocument/completion") then
+			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+		end
 	end,
 })

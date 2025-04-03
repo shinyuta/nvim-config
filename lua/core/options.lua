@@ -14,6 +14,7 @@ vim.opt.conceallevel = 2
 vim.opt.guicursor = "n-v-c-i:block"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.guicursor = "n-v-c:block-blinkwait700-blinkon400-blinkoff250"
+vim.o.winborder = ""
 
 ------------------ INDENTATION & TABS ------------------
 

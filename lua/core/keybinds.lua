@@ -52,7 +52,45 @@ vim.keymap.set("n", "<leader>P", '"+P', { desc = "Paste above from clipboard" })
 
 ------------------ LSP ------------------
 
-vim.keymap.set("n", "<leader>ci", vim.lsp.buf.hover, { desc = "Code info" })
+vim.keymap.set("n", "<leader>ci", function()
+	local bufnr = vim.api.nvim_get_current_buf()
+	local clients = vim.lsp.get_clients({ bufnr = bufnr })
+	if not clients or vim.tbl_isempty(clients) then
+		vim.notify("No LSP client available", vim.log.levels.ERROR)
+		return
+	end
+
+	-- Use the offset encoding from the first client (e.g. "utf-16" or "utf-8")
+	local encoding = clients[1].offset_encoding or "utf-16"
+	-- Pass encoding explicitly to avoid warnings.
+	local params = vim.lsp.util.make_position_params(nil, encoding)
+
+	vim.lsp.buf_request(bufnr, "textDocument/hover", params, function(err, result, ctx, _config)
+		if err then
+			vim.notify("Error fetching hover info: " .. err.message, vim.log.levels.ERROR)
+			return
+		end
+		if not (result and result.contents) then
+			vim.notify("No hover information available", vim.log.levels.INFO)
+			return
+		end
+
+		local markdown_lines = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
+		-- Replace deprecated trim_empty_lines() with vim.split() using trimempty option
+		markdown_lines = vim.split(table.concat(markdown_lines, "\n"), "\n", { trimempty = true })
+
+		if vim.tbl_isempty(markdown_lines) then
+			vim.notify("No hover information available", vim.log.levels.INFO)
+			return
+		end
+
+		-- Open a floating preview with a border, passing the position encoding to avoid warnings.
+		vim.lsp.util.open_floating_preview(markdown_lines, "markdown", {
+			border = "single",
+			position_encoding = encoding,
+		})
+	end)
+end, { desc = "Show Code Info with Border" })
 vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, { desc = "Code definition" })
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, { desc = "Code references" })
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
@@ -64,8 +102,10 @@ vim.keymap.set("n", "<leader>gf", function()
 	local prefer_none_ls = {
 		"python",
 		"javascript",
+		"javascriptreact", -- Added for React JS files
 		"lua",
 		"typescript",
+		"typescriptreact", -- Added for React TS files
 		"markdown",
 		"yaml",
 		"ruby",
@@ -81,7 +121,7 @@ vim.keymap.set("n", "<leader>gf", function()
 		return client.name == "null-ls"
 	end, vim.lsp.get_clients({ bufnr = bufnr }))
 	if vim.tbl_contains(prefer_none_ls, ft) and #none_ls_clients > 0 then
-		vim.notify("⚡ Formatting " .. ft .. " using none-ls", "info", { title = "Formatter" })
+		vim.notify("⚡ Formatting " .. ft .. " using null-ls", "info", { title = "Formatter" })
 		vim.lsp.buf.format({
 			bufnr = bufnr,
 			filter = function(client)

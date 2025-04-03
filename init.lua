@@ -22,6 +22,23 @@ require("lazy").setup("plugins", {
 	},
 })
 
+vim.lsp.enable({
+	"lua_ls",
+	"pyright",
+	"ts_ls",
+	"marksman",
+	"html",
+	"cssls",
+	"jsonls",
+	"yamlls",
+	"solargraph",
+	"gopls",
+	"rust_analyzer",
+	"jdtls",
+	"clangd",
+	"eslint",
+})
+
 require("core.options")
 require("core.keybinds")
 require("core.autocmds")
