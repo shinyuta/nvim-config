@@ -145,3 +145,88 @@ vim.keymap.set("n", "<leader>sp", function()
 		vim.notify("No previous same-level function found")
 	end
 end, { desc = "Jump to previous same-level function" })
+
+------------------ SNACKS PICKER -------------------
+
+-- 🗂️ Find files (side-by-side layout using "telescope")
+vim.keymap.set("n", "<C-p>", function()
+	require("snacks").picker.files({
+		layout = "sidebar",
+		focus = "list", -- open in normal mode (list window) so you can navigate with j/k
+		win = {
+			preview = {
+				wo = { number = false, relativenumber = false }, -- disable line numbers in preview
+			},
+		},
+	})
+end, { desc = "Find files (Snacks)" })
+
+-- 🔎 Live Grep (using "telescope" preset)
+vim.keymap.set("n", "<leader>fg", function()
+	require("snacks").picker.grep({
+		layout = "telescope",
+		focus = "list",
+		win = {
+			preview = {
+				wo = { number = false, relativenumber = false },
+			},
+		},
+	})
+end, { desc = "Live grep (Snacks)" })
+
+-- 📂 Buffers (Open in Normal Mode & Delete with 'd')
+vim.keymap.set("n", "<C-b>", function()
+	require("snacks").picker.buffers({
+		sort_lastused = true,
+		layout = "ivy", -- vertical layout (input and list at the top, preview below)
+		focus = "list", -- open in normal mode for immediate j/k navigation
+		height = 0.4, -- smaller overall height for the buffers picker
+		win = {
+			preview = {
+				wo = { number = false, relativenumber = false },
+			},
+		},
+		actions = {
+			d = require("snacks").picker.actions.bufdelete, -- pressing "d" deletes the selected buffer
+		},
+	})
+end, { desc = "Find buffers (Snacks)" })
+
+-- 📌 Zoxide (side-by-side layout using "telescope")
+vim.keymap.set("n", "<leader>fz", function()
+	require("snacks").picker.zoxide({
+		layout = "telescope",
+		focus = "list",
+		win = {
+			preview = {
+				wo = { number = false, relativenumber = false },
+			},
+		},
+	})
+end, { desc = "Zoxide search (Snacks)" })
+
+-- 🔍 Find Functions/Methods (LSP Symbols using "telescope")
+vim.keymap.set("n", "<leader>fm", function()
+	require("snacks").picker.lsp_symbols({
+		layout = "telescope",
+		focus = "list",
+		win = {
+			preview = {
+				wo = { number = false, relativenumber = false },
+			},
+		},
+	})
+end, { desc = "Find Functions/Methods (Snacks)" })
+
+-- 📋 Yank History (Registers using "telescope")
+vim.keymap.set("n", "<leader>fy", function()
+	require("snacks").picker.registers({
+		layout = "telescope",
+		focus = "list",
+		win = {
+			preview = {
+				wo = { number = false, relativenumber = false },
+			},
+		},
+	})
+end, { desc = "Yank history (Snacks)" })

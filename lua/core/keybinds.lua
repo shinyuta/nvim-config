@@ -134,53 +134,14 @@ vim.keymap.set("n", "<leader>gf", function()
 	end
 end, { desc = "Smart Format File" })
 
------------------- FZF-LUA ------------------
+------------------ NOICE ------------------
 
-local fzf = require("fzf-lua")
-
--- 🗂️ Find files (Optimized for previews)
-vim.keymap.set("n", "<C-p>", function()
-	fzf.files({ winopts = { height = 0.60 } })
-end, { desc = "Find files (FZF-Lua)" })
-
--- 🔎 Live Grep (Show Only File Names)
-vim.keymap.set("n", "<leader>fg", function()
-	fzf.live_grep({
-		winopts = { height = 0.60 },
-		fzf_opts = { ["--delimiter"] = ":", ["--with-nth"] = "1" }, -- Show only file names
-	})
-end, { desc = "Live grep (FZF-Lua)" })
-
--- 📂 Buffers (Open in Normal Mode & Delete with 'd')
-vim.keymap.set("n", "<C-b>", function()
-	fzf.buffers({
-		sort_mru = true,
-		sort_lastused = true,
-		winopts = { height = 0.30 },
-		fzf_opts = { ["--delimiter"] = ":", ["--with-nth"] = "1" }, -- Show only file names
-		actions = {
-			["default"] = fzf.actions.buf_edit, -- Open buffer (default action)
-			["d"] = { fn = fzf.actions.buf_del, reload = true }, -- Delete buffer with 'd'
-		},
-	})
-end, { desc = "Find buffers (FZF-Lua)" })
-
--- 📌 Zoxide (Jump to Directories)
-vim.keymap.set("n", "<leader>fz", function()
-	fzf.zoxide({ winopts = { height = 0.30 } })
-end, { desc = "Zoxide search (FZF-Lua)" })
-
--- 🔍 Find Functions/Methods in Document
-vim.keymap.set("n", "<leader>fm", function()
-	fzf.lsp_document_symbols({ winopts = { height = 0.60 } })
-end, { desc = "Find Functions/Methods in Document (FZF-Lua)" })
-
--- 📋 Yank History
-vim.keymap.set("n", "<leader>fy", function()
-	fzf.registers({ winopts = { height = 0.60 } })
-end, { desc = "Yank history (FZF-Lua)" })
-
-vim.keymap.set("n", "<C-e>", ":Noice fzf<CR>", { desc = "Noice FZF" })
+-- 🚨 Noice integration:
+-- Map <C-e> to launch Noice's Telescope view of message history.
+-- (This assumes Noice is installed and configured.)
+vim.keymap.set("n", "<C-e>", function()
+	vim.cmd("Noice telescope")
+end, { desc = "Noice Telescope" })
 
 ------------------ SPECTRE ------------------
 

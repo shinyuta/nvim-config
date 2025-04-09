@@ -102,7 +102,12 @@ return {
 
 		explorer = { enabled = false },
 		input = { enabled = false },
-		picker = { enabled = false },
+
+		picker = {
+			enabled = true,
+			ui_select = true, -- This makes snacks picker the default select interface
+		},
+
 		quickfile = { enabled = true },
 
 		scroll = { enabled = false },
