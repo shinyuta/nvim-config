@@ -11,7 +11,21 @@ return {
 			preset = {
 				keys = {
 					{ icon = "󰍂 ", key = "l", desc = "login", section = "session" },
-					{ icon = " ", key = "f", desc = "find", action = ":lua Snacks.dashboard.pick('files')" },
+					{
+						icon = " ",
+						key = "f",
+						desc = "find",
+						action = function()
+							require("snacks").picker.files({
+								layout = "telescope",
+								win = {
+									preview = {
+										wo = { number = false, relativenumber = false }, -- disable line numbers in preview
+									},
+								},
+							})
+						end,
+					},
 					{ icon = " ", key = "q", desc = "quit", action = ":qa" },
 				},
 				header = [[

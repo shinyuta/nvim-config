@@ -151,8 +151,7 @@ end, { desc = "Jump to previous same-level function" })
 -- 🗂️ Find files (side-by-side layout using "telescope")
 vim.keymap.set("n", "<C-p>", function()
 	require("snacks").picker.files({
-		layout = "sidebar",
-		focus = "list", -- open in normal mode (list window) so you can navigate with j/k
+		layout = "telescope",
 		win = {
 			preview = {
 				wo = { number = false, relativenumber = false }, -- disable line numbers in preview
@@ -165,7 +164,6 @@ end, { desc = "Find files (Snacks)" })
 vim.keymap.set("n", "<leader>fg", function()
 	require("snacks").picker.grep({
 		layout = "telescope",
-		focus = "list",
 		win = {
 			preview = {
 				wo = { number = false, relativenumber = false },
@@ -186,9 +184,6 @@ vim.keymap.set("n", "<C-b>", function()
 				wo = { number = false, relativenumber = false },
 			},
 		},
-		actions = {
-			d = require("snacks").picker.actions.bufdelete, -- pressing "d" deletes the selected buffer
-		},
 	})
 end, { desc = "Find buffers (Snacks)" })
 
@@ -196,7 +191,6 @@ end, { desc = "Find buffers (Snacks)" })
 vim.keymap.set("n", "<leader>fz", function()
 	require("snacks").picker.zoxide({
 		layout = "telescope",
-		focus = "list",
 		win = {
 			preview = {
 				wo = { number = false, relativenumber = false },
