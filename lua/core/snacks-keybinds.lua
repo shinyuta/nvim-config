@@ -160,6 +160,23 @@ vim.keymap.set("n", "<C-p>", function()
 	})
 end, { desc = "Find files (Snacks)" })
 
+vim.keymap.set("n", "<leader>fs", function()
+	require("snacks").picker.smart({
+		multi = { "buffers", "recent", "files" },
+		layout = "telescope",
+		matcher = {
+			fuzzy = true,
+			smartcase = true,
+			frecency = true, -- Enables recency-based scoring
+		},
+		win = {
+			preview = {
+				wo = { number = false, relativenumber = false },
+			},
+		},
+	})
+end, { desc = "Smart Picker" })
+
 -- 🔎 Live Grep (using "telescope" preset)
 vim.keymap.set("n", "<leader>fg", function()
 	require("snacks").picker.grep({
