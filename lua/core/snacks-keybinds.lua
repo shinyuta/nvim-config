@@ -165,10 +165,21 @@ vim.keymap.set("n", "<leader>fs", function()
 		multi = { "buffers", "recent", "files" },
 		layout = "telescope",
 		matcher = {
+			frecency = true, -- Enable frecency scoring (if available)
+			cwd_bonus = false, -- Disable bonus for current working directory items
 			fuzzy = true,
 			smartcase = true,
-			frecency = true, -- Enables recency-based scoring
 		},
+		sort = function(a, b)
+			-- Assume that 'last_used' is a numeric timestamp indicating recency.
+			local a_time = a.last_used or 0
+			local b_time = b.last_used or 0
+			if a_time ~= b_time then
+				return a_time > b_time -- more recent items come first
+			else
+				return (a.score or 0) > (b.score or 0)
+			end
+		end,
 		win = {
 			preview = {
 				wo = { number = false, relativenumber = false },
