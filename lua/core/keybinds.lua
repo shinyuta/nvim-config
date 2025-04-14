@@ -99,13 +99,13 @@ vim.keymap.set("n", "<leader>cp", vim.diagnostic.goto_prev, { desc = "Previous d
 vim.keymap.set("n", "<leader>gf", function()
 	local bufnr = vim.api.nvim_get_current_buf()
 	local ft = vim.bo.filetype
-	local prefer_none_ls = {
+	local prefer_null_ls = {
 		"python",
 		"javascript",
-		"javascriptreact", -- Added for React JS files
+		"javascriptreact", -- for React JS files
 		"lua",
 		"typescript",
-		"typescriptreact", -- Added for React TS files
+		"typescriptreact", -- for React TS files
 		"markdown",
 		"yaml",
 		"ruby",
@@ -117,11 +117,12 @@ vim.keymap.set("n", "<leader>gf", function()
 		"c",
 		"cpp",
 	}
-	local none_ls_clients = vim.tbl_filter(function(client)
+	local null_ls_clients = vim.tbl_filter(function(client)
 		return client.name == "null-ls"
 	end, vim.lsp.get_clients({ bufnr = bufnr }))
-	if vim.tbl_contains(prefer_none_ls, ft) and #none_ls_clients > 0 then
-		vim.notify("⚡ Formatting " .. ft .. " using null-ls", "info", { title = "Formatter" })
+
+	if vim.tbl_contains(prefer_null_ls, ft) and #null_ls_clients > 0 then
+		vim.notify("⚡ " .. ft .. " formatting (null-ls)", "info", { title = "Formatter" })
 		vim.lsp.buf.format({
 			bufnr = bufnr,
 			filter = function(client)
@@ -129,7 +130,7 @@ vim.keymap.set("n", "<leader>gf", function()
 			end,
 		})
 	else
-		vim.notify("  Formatting " .. ft .. " using LSP", "info", { title = "Formatter" })
+		vim.notify(" " .. ft .. " formatting (LSP)", "info", { title = "Formatter" })
 		vim.lsp.buf.format({ bufnr = bufnr })
 	end
 end, { desc = "Smart Format File" })

@@ -1,7 +1,7 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		cmd = "Mason", -- Only load if you explicitly run :Mason
+		event = "BufReadPre",
 		config = function()
 			require("mason").setup()
 		end,

@@ -32,7 +32,7 @@ vim.opt.splitbelow = true
 
 ------------------ SCROLLING & OFFSETS ------------------
 
-vim.opt.scrolloff = 10
+vim.o.scrolloff = 999
 
 ------------------ SEARCH BEHAVIOR ------------------
 

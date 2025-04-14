@@ -162,20 +162,20 @@ end, { desc = "Find files (Snacks)" })
 
 vim.keymap.set("n", "<leader>fs", function()
 	require("snacks").picker.smart({
-		multi = { "buffers", "recent", "files" },
+		-- Place "recent" first so it has the highest priority
+		multi = { "recent", "buffers", "files" },
 		layout = "telescope",
 		matcher = {
-			frecency = true, -- Enable frecency scoring (if available)
-			cwd_bonus = false, -- Disable bonus for current working directory items
+			cwd_bonus = false, -- do not favor items in the current directory
 			fuzzy = true,
 			smartcase = true,
 		},
 		sort = function(a, b)
-			-- Assume that 'last_used' is a numeric timestamp indicating recency.
+			-- Try to pull recency information if available; if not, rely on the internal score.
 			local a_time = a.last_used or 0
 			local b_time = b.last_used or 0
 			if a_time ~= b_time then
-				return a_time > b_time -- more recent items come first
+				return a_time > b_time
 			else
 				return (a.score or 0) > (b.score or 0)
 			end

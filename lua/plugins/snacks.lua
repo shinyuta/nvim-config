@@ -109,8 +109,9 @@ return {
 		notifier = {
 			enabled = true,
 			timeout = 2000,
-			width = { min = 40, max = 0.6 },
+			width = { min = 1, max = 0.4 }, -- use a max fraction of 0.4 (or switch to a fixed value like max = 60)
 			height = { min = 1, max = 0.6 },
+			padding = true, -- adds 1 cell of left/right padding
 			style = "compact",
 		},
 
